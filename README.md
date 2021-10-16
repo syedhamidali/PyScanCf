@@ -14,7 +14,8 @@ PyScanCf is a library for creating cfradial (polar) data from IMD radars that co
   author       = {HA Syed and
                   IMRAN SAYYED and
                   Madhu Chandra R Kalapureddy},
-  title        = {syedhamidali/PyScanCf: 1.0.0},
+  title        = {{PyScanCf - The library for IMD radar single sweep 
+                   data}},
   month        = oct,
   year         = 2021,
   publisher    = {Zenodo},
