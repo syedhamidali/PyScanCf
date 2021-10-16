@@ -1,0 +1,9 @@
+README.md
+setup.py
+pyscancf/__init__.py
+pyscancf/pyscancf.py
+pyscancf.egg-info/PKG-INFO
+pyscancf.egg-info/SOURCES.txt
+pyscancf.egg-info/dependency_links.txt
+pyscancf.egg-info/requires.txt
+pyscancf.egg-info/top_level.txt

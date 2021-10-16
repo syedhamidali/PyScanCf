@@ -1,0 +1,3 @@
+numpy
+arm_pyart
+netCDF4
