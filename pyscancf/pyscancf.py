@@ -34,7 +34,7 @@ def get_grid(radar):
     grid = pyart.map.grid_from_radars(
         radar, grid_shape=(40, 500, 500),
         grid_limits=((radar.altitude['data'][0], 2e4), (-2e5, 2e5), (-2e5, 2e5)),
-        fields=radar.fields.keys(), weighting_function='Barnes2', min_radius=200.)
+        fields=radar.fields.keys(), weighting_function='Barnes2', min_radius=250.)
     return grid
 
 def cfrad(input_dir,output_dir):
