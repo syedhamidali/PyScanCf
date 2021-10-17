@@ -9,7 +9,7 @@
 
 # ### Author: Syed Hamid Ali - hamidsyed37@gmail.com
 # #### Importing Libraries
-print('If you are using this software for publication please cite, \nHA Syed, Imran Sayyed, & MCR Kalapureddy. (2021). PyScanCf - \nThe library for IMD radar single sweep data (1.0.0). Zenodo. https://doi.org/10.5281/zenodo.5574161')
+print('If you are using this software for publication please cite, \nHA Syed, Imran Sayyed, & MCR Kalapureddy. (2021). PyScanCf - \nThe library for IMD radar single sweep data (1.0.3). Zenodo. https://doi.org/10.5281/zenodo.5574160')
 print('Importing Libraries')
 import warnings
 warnings.filterwarnings('ignore')
