@@ -9,15 +9,13 @@
 
 # ### Author: Syed Hamid Ali - hamidsyed37@gmail.com
 # #### Importing Libraries
+print('If you are using this software for publication please cite, \nHA Syed, Imran Sayyed, & MCR Kalapureddy. (2021). PyScanCf - \nThe library for IMD radar single sweep data (1.0.0). Zenodo. https://doi.org/10.5281/zenodo.5574161')
 print('Importing Libraries')
 import warnings
 warnings.filterwarnings('ignore')
 import datetime as dt
 tstart = dt.datetime.now()
 import numpy as np
-import xarray as xr
-# import wradlib as wrl
-import pandas as pd
 from netCDF4 import Dataset
 import glob
 import os
@@ -35,7 +33,7 @@ def get_grid(radar):
     """ Returns grid object from radar object. """
     grid = pyart.map.grid_from_radars(
         radar, grid_shape=(40, 500, 500),
-        grid_limits=((0, 2e3), (-2e5, 2e5), (-2e5, 2e5)),
+        grid_limits=((int(radar.altitude['data'].data), 2e4), (-2e5, 2e5), (-2e5, 2e5)),
         fields=radar.fields.keys(), weighting_function='Barnes2', min_radius=200.)
     return grid
 

@@ -1,12 +1,38 @@
 Metadata-Version: 2.1
 Name: pyscancf
-Version: 1.0.0
+Version: 1.0.1
 Summary: Creates PyArt compatible cf-radial data from single scans of IMD Radar data
 Home-page: https://github.com/syedhamidali/PyScanCf
 Author: Syed Hamid Ali
 License: UNKNOWN
 Project-URL: Bug Reports, https://github.com/RBhupi/PyREClass/issues
 Project-URL: Source, https://github.com/RBhupi/PyREClass/
+Description: # PyScanCf
+        
+        Creates PyArt compatible cf-radial data from single scans of IMD Radar data
+        
+        ## Description
+        
+        PyScanCf is a library for creating cfradial (polar) data from IMD radars that contain all 10 sweeps from single scans which are named as (Polar_ABC.nc) as well as gridded radar data from which are named as (grid_ABC.nc). Both formats are compatible for PyART. It uses Pyart to create grid data, so please remember to cite pyart as well.
+        
+        ## Reference
+        [![DOI](https://zenodo.org/badge/417933645.svg)](https://zenodo.org/badge/latestdoi/417933645)
+        
+        ## Cite as (Bibtex)
+        @software{ha_syed_2021_5574161,
+          author       = {HA Syed and
+                          IMRAN SAYYED and
+                          Madhu Chandra R Kalapureddy},
+          title        = {{PyScanCf - The library for IMD radar single sweep 
+                           data}},
+          month        = oct,
+          year         = 2021,
+          publisher    = {Zenodo},
+          version      = {1.0.0},
+          doi          = {10.5281/zenodo.5574161},
+          url          = {https://doi.org/10.5281/zenodo.5574161}
+        }
+        
 Keywords: IMD Radar cf-radial single sweeps radar weather meteorology
 Platform: UNKNOWN
 Classifier: Development Status :: 4 - Beta
@@ -17,16 +43,3 @@ Classifier: Programming Language :: Python :: 3.7
 Classifier: Programming Language :: Python :: 3.8
 Classifier: Programming Language :: Python :: 3.9
 Description-Content-Type: text/markdown
-
-# PyScanCf
-
-Creates PyArt compatible cf-radial data from single scans of IMD Radar data
-
-## Description
-
-PyScanCf is a library for creating cfradial (polar) data containing all 10 sweeps from single scans which are named as (Polar_ABC.nc) as well as gridded radar data from which is named as (grid_ABC.nc). Both formats are compatible for PyART. It uses Pyart to create grid data, so please remember to cite pyart as well.
-
-## Reference
-
-
-
