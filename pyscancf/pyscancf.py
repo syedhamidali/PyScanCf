@@ -33,7 +33,7 @@ def get_grid(radar):
     """ Returns grid object from radar object. """
     grid = pyart.map.grid_from_radars(
         radar, grid_shape=(40, 500, 500),
-        grid_limits=((radar.altitude['data'][0], 2e4), (-2e5, 2e5), (-2e5, 2e5)),
+        grid_limits=((radar.altitude['data'][0], 2e4), (-2.5e5, 2.5e5), (-2.5e5, 2.5e5)),
         fields=radar.fields.keys(), weighting_function='Barnes2', min_radius=250.)
     return grid
 
