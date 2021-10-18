@@ -27,4 +27,4 @@ Or, to install in your home directory, use::
 [![DOI](https://zenodo.org/badge/417933645.svg)](https://zenodo.org/badge/latestdoi/417933645)
 
 ### Cite as
-HA Syed, Imran Sayyed, & MCR Kalapureddy. (2021). PyScanCf - The library for IMD radar single sweep data (1.0.6). Zenodo. https://doi.org/10.5281/zenodo.5574305
+HA Syed, Imran Sayyed, & MCR Kalapureddy. (2021). PyScanCf - The library for IMD radar single sweep data (1.0.9). Zenodo. https://doi.org/10.5281/zenodo.5574305
