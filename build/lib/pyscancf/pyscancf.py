@@ -145,7 +145,7 @@ def plot_cappi(grid,prod,**kwargs):
     plt.savefig(stitle+'_'+grid.metadata['instrument_name']+num2date(grid.time['data'],
                                                  grid.time['units'])[0].strftime('%Y%m%d%H%M%S')+'.jpg',
                 dpi=100,bbox_inches='tight')
-    print(f'Figures saved in {out_dir} directory',)
+    print(f'Figures saved',)
 
 def get_grid(radar):
     """ Returns grid object from radar object. """
