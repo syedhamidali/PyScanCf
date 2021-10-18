@@ -157,10 +157,10 @@ def get_grid(radar):
 
 def cfrad(input_dir,output_dir,gridder=True,plot=None):
     '''
-        input_dir --> str - Enter path of single sweep data directory
-        output_dir --> str - Enter the path for output data
-        gridder --> bool - True, False
-        plot --> 'REF', 'VELH', 'WIDTHH', 'ALL'
+        input_dir --> str - Enter path of single sweep data directory,
+        output_dir --> str - Enter the path for output data,
+        gridder --> bool - True, False,
+        plot --> 'REF', 'VELH', 'WIDTHH', 'ALL',
     '''
     in_dir=input_dir
     out_dir=output_dir
