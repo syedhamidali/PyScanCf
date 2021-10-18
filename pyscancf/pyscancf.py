@@ -142,7 +142,7 @@ def plot_cappi(grid,prod,**kwargs):
                                 grid.time['units'])[0].strftime('%d %b, %Y UTC'),
              fontsize=14)
     ax_xy.set_aspect('auto')
-    plt.savefig(plot_dir+'//'+stitle+'_'+grid.metadata['instrument_name']+num2date(grid.time['data'],
+    plt.savefig(stitle+'_'+grid.metadata['instrument_name']+num2date(grid.time['data'],
                                                  grid.time['units'])[0].strftime('%Y%m%d%H%M%S')+'.jpg',
                 dpi=100,bbox_inches='tight')
     print(f'Figures saved in {out_dir} directory',)
