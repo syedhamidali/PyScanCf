@@ -72,22 +72,28 @@ def cfrad(input_dir,output_dir):
             V1.extend(V)
             W1.extend(W)
             en.append(EN)
-        radar = pyart.testing.make_empty_ppi_radar(996, 3600, 1)
+        radar = pyart.testing.make_empty_ppi_radar(ds.dimensions['bin'].size,
+                                               ds.dimensions['radial'].size*10, 1)
         radar.nsweeps = 10
         radar.time['data'] = np.array(t1)
         radar.time['units'] = ds.variables['radialTime'].units#'seconds since 1970-01-01T00:00:00Z'
         radar.latitude['data'] = np.array([ds.variables['siteLat'][:]])
         radar.longitude['data'] = np.array([ds.variables['siteLon'][:]])
         radar.altitude['data'] = np.array([ds.variables['siteAlt'][:]])
-        radar.range['data'] = np.arange(0,ds.dimensions['bin'].size*ds.variables['gateSize'][:].data,
+        radar.range['data'] = np.arange(0,
+                                        ds.dimensions['bin'].size*ds.variables['gateSize'][:].data,
                                         int(ds.variables['gateSize'][:].data))
         radar.fixed_angle['data'] = ds.variables['elevationList']
         radar.sweep_number['data'] = np.array(en)
-        radar.sweep_start_ray_index['data'] = np.arange(0,3600,360)
-        radar.sweep_end_ray_index['data'] = np.arange(359,3600,360)
+        radar.sweep_start_ray_index['data'] = np.arange(0,
+                                                        ds.dimensions['radial'].size*10,
+                                                        ds.dimensions['radial'].size)
+        radar.sweep_end_ray_index['data'] = np.arange(ds.dimensions['radial'].size-1,
+                                                    ds.dimensions['radial'].size*10,
+                                                    ds.dimensions['radial'].size)
         radar.azimuth['data'] = np.ma.array(a1)
         radar.elevation['data'] = np.ma.array(e1)
-        radar.metadata['instrument_name'] = 'GOA'
+        radar.metadata['instrument_name'] = files[0][-24:-21]
         radar.init_gate_altitude()
         radar.init_gate_longitude_latitude()
         ref_dict = get_metadata('reflectivity')

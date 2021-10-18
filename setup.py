@@ -1,9 +1,3 @@
-"""A setuptools based setup module.
-See:
-https://packaging.python.org/en/latest/distributing.html
-https://github.com/pypa/sampleproject
-"""
-
 # Always prefer setuptools over distutils
 from setuptools import setup, find_packages
 from os import path
@@ -17,7 +11,7 @@ with open(path.join(here, "README.md"), encoding="utf-8") as f:
 
 setup(
     name="pyscancf",  # Required
-    version="1.0.7",  # Required
+    version="1.0.8",  # Required
     author='Syed Hamid Ali',
     description="Creates PyArt compatible cf-radial data from single scans of IMD Radar data",  # Optional
     long_description=long_description,  # Optional
@@ -34,10 +28,10 @@ setup(
         "Programming Language :: Python :: 3.9",
     ],
     keywords="IMD Radar cf-radial single sweeps radar weather meteorology",  # Optional
-    packages=find_packages(exclude=["contrib", "docs", "tests"]),  # Required
-    install_requires=["numpy","arm_pyart","netCDF4"], # Required
+    # packages=find_packages(exclude=["contrib", "docs", "tests"]),  # Required
+    install_requires=["numpy","arm_pyart","netCDF4","cartopy"], # Required
     project_urls={  # Optional
-        "Bug Reports": "https://github.com/RBhupi/PyREClass/issues",
-        "Source": "https://github.com/RBhupi/PyREClass/",
+        "Bug Reports": "https://github.com/syedhamidali/PyScanCf/issues",
+        "Source": "https://github.com/syedhamidali/PyScanCf/",
     },
 )
