@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: pyscancf
-Version: 1.0.12
+Version: 1.0.13
 Summary: Creates PyArt compatible cf-radial data from single scans of IMD Radar data
 Home-page: https://github.com/syedhamidali/PyScanCf
 Author: Syed Hamid Ali
@@ -32,10 +32,12 @@ Installing from source
 Installing PyScanCf from source is the only way to get the latest updates and
 enhancement to the software that have not yet made it into a release.
 The latest source code for PyScanCf can be obtained from the GitHub repository,
-https://github.com/syedhamidali/PyScanCf.git. Either download and unpack the 
-`zip file <https://github.com/syedhamidali/PyScanCf/archive/refs/heads/master.zip>`_ of 
-the source code or use git to checkout the repository::
+https://github.com/syedhamidali/PyScanCf.git.
 
+How to install::
+
+    conda create -n pcf python=3.9 jupyter arm_pyart pandas wradlib -c conda-forge
+    conda activate pcf
     pip install git+https://github.com/syedhamidali/PyScanCf.git
 
 Or, to install in your home directory, use::
@@ -43,10 +45,7 @@ Or, to install in your home directory, use::
     git clone https://github.com/syedhamidali/PyScanCf.git
     python setup.py install --user
 
-## Reference
-[![DOI](https://zenodo.org/badge/417933645.svg)](https://zenodo.org/badge/latestdoi/417933645)
+Or, Install via pip::
 
-### Cite as
-HA Syed, Imran Sayyed, & MCR Kalapureddy. (2021). PyScanCf - The library for IMD radar single sweep data (1.0.9). Zenodo. https://doi.org/10.5281/zenodo.5574305
-
+    pip install pyscancf
 
