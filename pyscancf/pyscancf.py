@@ -155,7 +155,7 @@ def get_grid(radar):
         fields=radar.fields.keys(), weighting_function='Barnes2', min_radius=250.)
     return grid
 
-def cfrad(input_dir,output_dir,gridder=True,plot=None,plot_dir=None):
+def cfrad(input_dir,output_dir,gridder=True,plot=None,):
     '''
         input_dir --> str - Enter path of single sweep data directory,
         output_dir --> str - Enter the path for output data,
