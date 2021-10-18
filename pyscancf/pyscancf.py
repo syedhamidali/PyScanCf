@@ -25,7 +25,7 @@ from cartopy.mpl.gridliner import LONGITUDE_FORMATTER, LATITUDE_FORMATTER
 warnings.filterwarnings('ignore')
 print('Importing Libraries Done')
 
-def plot_cappi(grid,prod,plot_dir=None,**kwargs):
+def plot_cappi(grid,prod,plot_dir,**kwargs):
     max_c = grid.fields[prod]['data'].max(axis=0)
     max_x = grid.fields[prod]['data'].max(axis=1)
     max_y = grid.fields[prod]['data'].max(axis=2).T
