@@ -28,7 +28,7 @@ setup(
         "Programming Language :: Python :: 3.9",
     ],
     keywords="IMD Radar cf-radial single sweeps radar weather meteorology",  # Optional
-    # packages=find_packages(exclude=["contrib", "docs", "tests"]),  # Required
+    packages=find_packages(exclude=["contrib", "docs", "tests"]),  # Required
     install_requires=["numpy","arm_pyart","netCDF4","cartopy"], # Required
     project_urls={  # Optional
         "Bug Reports": "https://github.com/syedhamidali/PyScanCf/issues",
