@@ -133,7 +133,7 @@ def plot_cappi(grid,prod,**kwargs):
         labelbottom=False)
     # labels along the bottom edge are off
     plt.text(0.34,0.8, stitle, size=14, weight='bold')
-    plt.text(0.09,0.65,'Max Range: 200 km',fontsize=12)
+    plt.text(0.09,0.65,'Max Range: 250 km',fontsize=12)
     plt.text(0.12,0.5,'VPR Height: 20 km',fontsize=12)
     plt.text(0.15,0.3,num2date(grid.time['data'],
                                 grid.time['units'])[0].strftime('%H:%M:%S Z'),
