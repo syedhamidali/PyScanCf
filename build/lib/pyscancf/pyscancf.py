@@ -25,7 +25,7 @@ from cartopy.mpl.gridliner import LONGITUDE_FORMATTER, LATITUDE_FORMATTER
 warnings.filterwarnings('ignore')
 print('Importing Libraries Done')
 
-def plot_cappi(grid,prod,**kwargs):
+def plot_cappi(grid,prod,**kwargs,plot_dir):
     max_c = grid.fields[prod]['data'].max(axis=0)
     max_x = grid.fields[prod]['data'].max(axis=1)
     max_y = grid.fields[prod]['data'].max(axis=2).T
@@ -142,7 +142,7 @@ def plot_cappi(grid,prod,**kwargs):
                                 grid.time['units'])[0].strftime('%d %b, %Y UTC'),
              fontsize=14)
     ax_xy.set_aspect('auto')
-    plt.savefig(out_dir+'//'+stitle+'_'+grid.metadata['instrument_name']+num2date(grid.time['data'],
+    plt.savefig(plot_dir+'//'+stitle+'_'+grid.metadata['instrument_name']+num2date(grid.time['data'],
                                                  grid.time['units'])[0].strftime('%Y%m%d%H%M%S')+'.jpg',
                 dpi=100,bbox_inches='tight')
     print(f'Figures saved in {out_dir} directory',)
@@ -155,7 +155,7 @@ def get_grid(radar):
         fields=radar.fields.keys(), weighting_function='Barnes2', min_radius=250.)
     return grid
 
-def cfrad(input_dir,output_dir,gridder=True,plot=None):
+def cfrad(input_dir,output_dir,gridder=True,plot=None,plot_dir=None):
     '''
         input_dir --> str - Enter path of single sweep data directory,
         output_dir --> str - Enter the path for output data,
