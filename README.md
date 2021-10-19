@@ -30,3 +30,6 @@ Or, Install via pip::
     pip install pyscancf
 ## Please cite this software
 Syed H.A, Imran Sayyed, & M.C.R Kalapureddy. (2021). PyScanCf - The library for IMD radar single sweep data. Zenodo. https://doi.org/10.5281/zenodo.5574160
+
+### PyScanCf Tutorial on Youtube::
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/OUrdhe5virA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
