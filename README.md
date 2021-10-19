@@ -1,6 +1,6 @@
 # PyScanCf
 
-Creates PyArt compatible cf-radial data from single scans of IMD Radar data
+Creates Py-ART compatible cf-radial data from single scans of IMD Radar data
 
 ## Description
 
