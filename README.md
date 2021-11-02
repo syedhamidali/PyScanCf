@@ -16,7 +16,7 @@ https://github.com/syedhamidali/PyScanCf.git.
 
 How to install::
 
-    conda create -n pcf python=3.9 jupyter arm_pyart pandas wradlib -c conda-forge
+    conda create -n pcf python=3.9 jupyter arm_pyart pandas wradlib git -c conda-forge
     conda activate pcf
     pip install git+https://github.com/syedhamidali/PyScanCf.git
 
