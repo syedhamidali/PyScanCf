@@ -95,7 +95,7 @@ def plot_cappi(grid,prod,**kwargs):
     gl.ylabel_style = {'weight': 'bold'}
 
     # ax_xy.add_feature(shape_feature)
-    ax_xy.add_feature(feat.COASTLINE,color='w',alpha=0.7)
+    ax_xy.add_feature(feat.COASTLINE,color='k',alpha=0.7)
     [ax_xy.plot(r * np.cos(np.arange(0,360) * np.pi / 180), 
              r * np.sin(np.arange(0,360) * np.pi / 180), 'k--', 
                 linewidth=1, alpha=0.5) for r in np.arange(5e4,30e4,5e4)]
