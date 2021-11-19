@@ -10,7 +10,7 @@ import datetime as dt
 tstart = dt.datetime.now()
 import numpy as np
 import matplotlib.pyplot as plt
-plt.style.use("dark_background")
+# plt.style.use("dark_background")
 from netCDF4 import Dataset
 from netCDF4 import num2date
 import glob
