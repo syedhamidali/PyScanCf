@@ -225,13 +225,13 @@ def cfrad(input_dir,output_dir,gridder=True,plot=None,):
         ref_dict = get_metadata('reflectivity')
         ref_dict['data'] = np.ma.array(Z1)
         ref_dict['units'] = 'dBZ'
-        radar.fields = {'REF': ref_dict}
-        VELH_dict = {'units':'m/s','standard_name':'Radial Velocity','data':np.ma.array(V1),}
-        radar.add_field('VELH',VELH_dict,replace_existing=True)
-        W_dict = {'units':'m/s','standard_name':'Spectral Width','data':np.ma.array(W1),}
-        radar.add_field('WIDTHH',W_dict,replace_existing=True)
-        T_dict = {'units':'dBT','standard_name':'Total Power','data':np.ma.array(T1),}
-        radar.add_field('TP',T_dict,replace_existing=True)
+        VELH_dict = get_metadata('velocity')
+        VELH_dict['data'] = np.ma.array(V1)
+        VELH_dict['units'] = 'm/s'
+        W_dict = get_metadata('spectrum_width')
+        W_dict['data'] = np.ma.array(W1)
+        W_dict['units'] = 'm/s'
+        radar.fields = {'REF': ref_dict,'VEL': VELH_dict,'WIDTH':W_dict}
         pyart.io.write_cfradial(out_dir+'//'+'polar_'+fname+'.nc', radar, 
                                 format = 'NETCDF4',time_reference=None, arm_time_variables=False)
         if gridder == True:
