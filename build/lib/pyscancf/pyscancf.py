@@ -10,7 +10,7 @@ import datetime as dt
 tstart = dt.datetime.now()
 import numpy as np
 import matplotlib.pyplot as plt
-plt.style.use("dark_background")
+# plt.style.use("dark_background")
 from netCDF4 import Dataset
 from netCDF4 import num2date
 import glob
@@ -45,7 +45,7 @@ def plot_cappi(grid,prod,**kwargs):
         stitle='Max-V'
         munit = 'm/s'
 
-    if  prod == 'WIDTHH':
+    if  prod == 'WIDTH':
         cmap='pyart_NWS_SPW'
         levels=np.linspace(0,5,9)
         stitle='Max-W'
@@ -97,12 +97,12 @@ def plot_cappi(grid,prod,**kwargs):
     # ax_xy.add_feature(shape_feature)
     ax_xy.add_feature(feat.COASTLINE,color='w',alpha=0.7)
     [ax_xy.plot(r * np.cos(np.arange(0,360) * np.pi / 180), 
-             r * np.sin(np.arange(0,360) * np.pi / 180), 'w--', 
+             r * np.sin(np.arange(0,360) * np.pi / 180), 'k--', 
                 linewidth=1, alpha=0.5) for r in np.arange(5e4,30e4,5e4)]
     ax_xy.set_xlim(-2.5e5,2.5e5)
     ax_xy.set_ylim(-2.5e5,2.5e5)
-    ax_xy.plot([0,0],[-10e3,10e3],'w-')
-    ax_xy.plot([-10e3,10e3],[0,0],'w-')
+    ax_xy.plot([0,0],[-10e3,10e3],)#'w-')
+    ax_xy.plot([-10e3,10e3],[0,0],)#'w-')
 
     # draw colorbar
     cb = plt.colorbar(xy, cax=ax_cb)
@@ -160,7 +160,7 @@ def cfrad(input_dir,output_dir,gridder=True,plot=None,):
         input_dir --> str - Enter path of single sweep data directory,
         output_dir --> str - Enter the path for output data,
         gridder --> bool - True, False,
-        plot --> 'REF', 'VELH', 'WIDTHH', 'ALL',
+        plot --> 'REF', 'VELH', 'WIDTH', 'ALL',
     '''
     in_dir=input_dir
     out_dir=output_dir
@@ -242,12 +242,12 @@ def cfrad(input_dir,output_dir,gridder=True,plot=None,):
                     plot_cappi(grid,'REF')
                 if plot == 'VELH':
                     plot_cappi(grid,'VELH')
-                if plot == 'WIDTHH':
-                    plot_cappi(grid,'WIDTHH')
+                if plot == 'WIDTH':
+                    plot_cappi(grid,'WIDTH')
                 if plot == 'ALL':
                     plot_cappi(grid,'REF')
                     plot_cappi(grid,'VELH')
-                    plot_cappi(grid,'WIDTHH')                
+                    plot_cappi(grid,'WIDTH')                
             else:
                 pass
             pyart.io.write_grid(out_dir+'//'+'grid_'+fname+'.nc', grid)

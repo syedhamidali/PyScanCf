@@ -97,12 +97,12 @@ def plot_cappi(grid,prod,**kwargs):
     # ax_xy.add_feature(shape_feature)
     ax_xy.add_feature(feat.COASTLINE,color='w',alpha=0.7)
     [ax_xy.plot(r * np.cos(np.arange(0,360) * np.pi / 180), 
-             r * np.sin(np.arange(0,360) * np.pi / 180), 'w--', 
+             r * np.sin(np.arange(0,360) * np.pi / 180), 'k--', 
                 linewidth=1, alpha=0.5) for r in np.arange(5e4,30e4,5e4)]
     ax_xy.set_xlim(-2.5e5,2.5e5)
     ax_xy.set_ylim(-2.5e5,2.5e5)
-    ax_xy.plot([0,0],[-10e3,10e3],'w-')
-    ax_xy.plot([-10e3,10e3],[0,0],'w-')
+    ax_xy.plot([0,0],[-10e3,10e3],)#'w-')
+    ax_xy.plot([-10e3,10e3],[0,0],)#'w-')
 
     # draw colorbar
     cb = plt.colorbar(xy, cax=ax_cb)
