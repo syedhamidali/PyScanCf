@@ -45,7 +45,7 @@ def plot_cappi(grid,prod,**kwargs):
         stitle='Max-V'
         munit = 'm/s'
 
-    if  prod == 'WIDTHH':
+    if  prod == 'WIDTH':
         cmap='pyart_NWS_SPW'
         levels=np.linspace(0,5,9)
         stitle='Max-W'
@@ -160,7 +160,7 @@ def cfrad(input_dir,output_dir,gridder=True,plot=None,):
         input_dir --> str - Enter path of single sweep data directory,
         output_dir --> str - Enter the path for output data,
         gridder --> bool - True, False,
-        plot --> 'REF', 'VELH', 'WIDTHH', 'ALL',
+        plot --> 'REF', 'VELH', 'WIDTH', 'ALL',
     '''
     in_dir=input_dir
     out_dir=output_dir
@@ -242,12 +242,12 @@ def cfrad(input_dir,output_dir,gridder=True,plot=None,):
                     plot_cappi(grid,'REF')
                 if plot == 'VELH':
                     plot_cappi(grid,'VELH')
-                if plot == 'WIDTHH':
-                    plot_cappi(grid,'WIDTHH')
+                if plot == 'WIDTH':
+                    plot_cappi(grid,'WIDTH')
                 if plot == 'ALL':
                     plot_cappi(grid,'REF')
                     plot_cappi(grid,'VELH')
-                    plot_cappi(grid,'WIDTHH')                
+                    plot_cappi(grid,'WIDTH')                
             else:
                 pass
             pyart.io.write_grid(out_dir+'//'+'grid_'+fname+'.nc', grid)
