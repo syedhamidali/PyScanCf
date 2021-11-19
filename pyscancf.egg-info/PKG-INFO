@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: pyscancf
-Version: 1.0.14
+Version: 1.0.16
 Summary: Creates PyArt compatible cf-radial data from single scans of IMD Radar data
 Home-page: https://github.com/syedhamidali/PyScanCf
 Author: Syed Hamid Ali
@@ -20,11 +20,11 @@ Description-Content-Type: text/markdown
 
 # PyScanCf
 
-Creates PyArt compatible cf-radial data from single scans of IMD Radar data
+Creates Py-ART compatible cf-radial data from single scans of IMD Radar data
 
 ## Description
 
-PyScanCf is a library for creating cfradial (polar) data from IMD radars that contain all 10 sweeps from single scans which are named as (Polar_ABC.nc) as well as gridded radar data from which are named as (grid_ABC.nc). Both formats are compatible for PyART. It uses Pyart to create grid data, so please remember to cite pyart as well.
+PyScanCf is a library for creating cfradial (polar) data from IMD radars that contain all 10 sweeps from single scans which are named as (Polar_ABC.nc) as well as gridded radar data from which are named as (grid_ABC.nc). Both formats are compatible for PyART. It uses Pyart to create grid data, so please remember to cite **Py-ART** as well.
 
 Installing from source
 ======================
@@ -36,7 +36,7 @@ https://github.com/syedhamidali/PyScanCf.git.
 
 How to install::
 
-    conda create -n pcf python=3.9 jupyter arm_pyart pandas wradlib -c conda-forge
+    conda create -n pcf python=3.9 jupyter arm_pyart pandas wradlib git -c conda-forge
     conda activate pcf
     pip install git+https://github.com/syedhamidali/PyScanCf.git
 
@@ -48,4 +48,10 @@ Or, to install in your home directory, use::
 Or, Install via pip::
 
     pip install pyscancf
+## Citation
+Syed H.A, Imran Sayyed, & M.C.R Kalapureddy. (2021). PyScanCf - The library for IMD radar single sweep data. Zenodo. https://doi.org/10.5281/zenodo.5574160
+
+### PyScanCf Tutorial on Youtube
+https://youtu.be/OUrdhe5virA
+
 
