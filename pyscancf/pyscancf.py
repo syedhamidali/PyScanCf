@@ -155,7 +155,7 @@ def get_grid(radar):
         fields=radar.fields.keys(), weighting_function='Barnes2', min_radius=250.)
     return grid
 
-def cfrad(input_dir,output_dir,gridder=True,plot=None,):
+def cfrad(input_dir,output_dir,gridder=False,plot=None,):
     '''
         input_dir --> str - Enter path of single sweep data directory,
         output_dir --> str - Enter the path for output data,
@@ -180,7 +180,7 @@ def cfrad(input_dir,output_dir,gridder=True,plot=None,):
             time = ds.variables['radialTime'][:]
             ele  = ds.variables['radialElev'][:]
             Z = ds.variables['Z'][:]
-            T = ds.variables['T'][:]
+            # T = ds.variables['T'][:]
             V = ds.variables['V'][:]
             W = ds.variables['W'][:]
             EN = ds.variables['elevationNumber'][:]
@@ -188,7 +188,7 @@ def cfrad(input_dir,output_dir,gridder=True,plot=None,):
             t1.extend(time)
             e1.extend(ele)
             Z1.extend(Z)
-            T1.extend(T)
+            # T1.extend(T)
             V1.extend(V)
             W1.extend(W)
             en.append(EN)
