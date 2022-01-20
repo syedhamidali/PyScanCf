@@ -231,7 +231,7 @@ def cfrad(input_dir,output_dir,gridder=False,plot=None,):
         W_dict = get_metadata('spectrum_width')
         W_dict['data'] = np.ma.array(W1)
         W_dict['units'] = 'm/s'
-        radar.fields = {'REF': ref_dict,'VEL': VELH_dict,'WIDTH':W_dict}
+        radar.fields = {'REF': ref_dict,'VELH': VELH_dict,'WIDTH':W_dict}
         pyart.io.write_cfradial(out_dir+'//'+'polar_'+fname+'.nc', radar, 
                                 format = 'NETCDF4',time_reference=None, arm_time_variables=False)
         if gridder == True:

@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: pyscancf
-Version: 1.0.19
+Version: 1.0.20
 Summary: Creates PyArt compatible cf-radial data from single scans of IMD Radar data
 Home-page: https://github.com/syedhamidali/PyScanCf
 Author: Syed Hamid Ali
