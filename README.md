@@ -1,3 +1,5 @@
+[![Gitter](https://badges.gitter.im/PyScanCf/Issues.svg)](https://gitter.im/PyScanCf/Issues?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 # PyScanCf
 
 Creates Py-ART compatible cf-radial data from single scans of IMD Radar data
