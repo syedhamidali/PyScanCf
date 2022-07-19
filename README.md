@@ -32,7 +32,7 @@ Or, Install via pip::
     pip install pyscancf
 ## Citation
 
-Syed, Hamid Ali, Sayyed, Imran, Kalapureddy, Madhu Chandra R, & Grandhi, Kishore Kumar. (2021). PyScanCf – The library for single sweep datasets of IMD weather radars. Zenodo. 
+Hamid Ali Syed, Sayyed Imran, Kalapureddy Madhu Chandra R, & Grandhi Kishore Kumar. (2021). PyScanCf – The library for single sweep datasets of IMD weather radars. Zenodo. 
 https://doi.org/10.5281/zenodo.5574160
 
 ### PyScanCf Tutorial on Youtube
@@ -53,7 +53,7 @@ Convert data to cfradial format::
     pcf.cfrad(inp,inp,True,'REF')
     
 And you'll see the beautiful gridded data plot in your notebook, 
-the data will be saved in the directory from where you launched the notebook
+the figures will be saved in the directory from where you launched the notebook
 
 ![image](https://user-images.githubusercontent.com/35923822/179660426-e191bd08-d455-4ccc-96af-ea9cb14cebf5.png)
 
