@@ -30,7 +30,9 @@ Or, to install in your home directory, use::
 Or, Install via pip::
 
     pip install pyscancf
-## Citation
+
+Citation
+========
 
 Hamid Ali Syed, Sayyed Imran, Kalapureddy Madhu Chandra R, & Grandhi Kishore Kumar. (2021). PyScanCf – The library for single sweep datasets of IMD weather radars. Zenodo. 
 https://doi.org/10.5281/zenodo.5574160
