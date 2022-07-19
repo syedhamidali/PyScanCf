@@ -40,8 +40,7 @@ Hamid Ali Syed, Sayyed Imran, Kalapureddy Madhu Chandra R, & Grandhi Kishore Kum
 https://doi.org/10.5281/zenodo.5574160
 
 ### PyScanCf Tutorial on Youtube
-
-    <https://youtu.be/OUrdhe5virA>
+<https://youtu.be/OUrdhe5virA>
 
 ### Documentation
 
