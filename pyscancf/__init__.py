@@ -1,6 +1,6 @@
 # =============================
 """
-PyMeso - Python Package to providing LLSD retrieval
+PyScanCf - Python Package to interact with IMD radar data
 ==================================
 Top-level package (:mod:`pyscancf`)
 ==================================
