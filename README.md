@@ -61,5 +61,9 @@ the figures will be saved in the directory from where you launched the notebook
 
 ![image](https://user-images.githubusercontent.com/35923822/179660426-e191bd08-d455-4ccc-96af-ea9cb14cebf5.png)
 
+Detailed and efficient way to use this toolkit
+-------
+[Detailed Notebook](https://syedha.com/imd/IMD_radar_data_pyscancf.html){:target="_blank"}
+
 
     
