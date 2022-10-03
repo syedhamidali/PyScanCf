@@ -1,14 +1,12 @@
 Metadata-Version: 2.1
 Name: pyscancf
-Version: 1.0.20
+Version: 1.0.21
 Summary: Creates PyArt compatible cf-radial data from single scans of IMD Radar data
 Home-page: https://github.com/syedhamidali/PyScanCf
 Author: Syed Hamid Ali
-License: UNKNOWN
 Project-URL: Bug Reports, https://github.com/syedhamidali/PyScanCf/issues
 Project-URL: Source, https://github.com/syedhamidali/PyScanCf/
 Keywords: IMD Radar cf-radial single sweeps radar weather meteorology
-Platform: UNKNOWN
 Classifier: Development Status :: 4 - Beta
 Classifier: Topic :: Scientific/Engineering
 Classifier: Topic :: Scientific/Engineering :: Atmospheric Science
@@ -16,11 +14,14 @@ Classifier: License :: OSI Approved :: MIT License
 Classifier: Programming Language :: Python :: 3.7
 Classifier: Programming Language :: Python :: 3.8
 Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
 Description-Content-Type: text/markdown
+
+[![Gitter](https://badges.gitter.im/PyScanCf/Issues.svg)](https://gitter.im/PyScanCf/Issues?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 # PyScanCf
 
-Creates Py-ART compatible cf-radial data from single scans of IMD Radar data
+Creates Py-ART compatible cf-radial data from single scans from Indian Meteorological Department (IMD) Radar data
 
 ## Description
 
@@ -48,10 +49,38 @@ Or, to install in your home directory, use::
 Or, Install via pip::
 
     pip install pyscancf
-## Citation
-Syed H.A, Imran Sayyed, & M.C.R Kalapureddy. (2021). PyScanCf - The library for IMD radar single sweep data. Zenodo. https://doi.org/10.5281/zenodo.5574160
+
+Citation
+========
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5881692.svg)](https://doi.org/10.5281/zenodo.5574160)
+
+Syed, H. A., Sayyed, I., Kalapureddy, M. C. R., & Grandhi, K. K. (2021). PyScanCf – The library for single sweep datasets of IMD weather radars. Zenodo. 
+[doi:10.5281/zenodo.5574160](https://doi.org/10.5281/zenodo.5574160).
 
 ### PyScanCf Tutorial on Youtube
-https://youtu.be/OUrdhe5virA
+<https://youtu.be/OUrdhe5virA>
 
+### Documentation
+
+Import Library::
+
+    from pyscancf import pyscancf as pcf
+    
+Mention the data path::
+
+    inp = '/Users/rizvi/Downloads/goa16'
+    
+Convert data to cfradial format::
+
+    pcf.cfrad(inp,inp,True,'REF')
+    
+And you'll see the beautiful gridded data plot in your notebook, 
+the figures will be saved in the directory from where you launched the notebook
+
+![image](https://user-images.githubusercontent.com/35923822/179660426-e191bd08-d455-4ccc-96af-ea9cb14cebf5.png)
+
+Detailed and efficient way to use this toolkit
+-------
+[Detailed Notebook](https://syedha.com/imd/IMD_radar_data_pyscancf.html)
 

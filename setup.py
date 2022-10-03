@@ -11,7 +11,7 @@ with open(path.join(here, "README.md"), encoding="utf-8") as f:
 
 setup(
     name="pyscancf",  # Required
-    version="1.0.20",  # Required
+    version="1.0.21",  # Required
     author='Syed Hamid Ali',
     description="Creates PyArt compatible cf-radial data from single scans of IMD Radar data",  # Optional
     long_description=long_description,  # Optional
@@ -26,6 +26,7 @@ setup(
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
     ],
     keywords="IMD Radar cf-radial single sweeps radar weather meteorology",  # Optional
     packages=find_packages(exclude=["contrib", "docs", "tests"]),  # Required
