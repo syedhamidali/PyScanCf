@@ -259,15 +259,10 @@ def cfrad(input_dir, output_dir, dualpol=False, gridder=False, plot=None,):
                 RHOHV1.extend(RHOHV)
                 HCLASS1.extend(HCLASS)
 
-
-#         if len(bb[i][0].split('/')[-1]) < 30:
-#             split('/')[-1].split('-')[0]
-#         else:
-#             fname = bb[i][0].split('\\')[-1].split('-')[0]
-
-        fname = bb[i][0].split("/")[-1].split(".nc")[0]
-#         print(fname)
-#         print(os.path.join(out_dir)+'/'+'polar_'+fname+'.nc')
+        if bb[i][0].count("/") == 0:
+            fname = bb[i][0].split("\\")[-1].split(".nc")[0]
+        else:
+            fname = bb[i][0].split("/")[-1].split(".nc")[0]
 
         radar = pyart.testing.make_empty_ppi_radar(
             ds.dimensions['bin'].size, ds.dimensions['radial'].size*10, 1)
