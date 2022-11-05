@@ -336,7 +336,7 @@ def cfrad(input_dir, output_dir, dualpol=False, gridder=False, plot=None,):
                             'SQI': SQI_dict, 'RHOHV': RHOHV_dict,
                             'HCLASS': HCLASS_dict}
 
-        pyart.io.write_cfradial(os.path.join(out_dir)+"/"+'polar_'+fname+'.nc',
+        pyart.io.write_cfradial(os.path.join(out_dir)+'polar_'+fname+'.nc',
                                 radar, format='NETCDF4')
         if gridder:
             grid = get_grid(radar)
