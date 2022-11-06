@@ -27,6 +27,10 @@ tstart = dt.datetime.now()
 
 
 def plot_cappi(grid, prod, **kwargs):
+    ''' Plots CAPPI
+    grid: pyart grid object,
+    prod(str): radar product e.g., "REF", "VELH", "WIDTH", or "ALL"
+    '''
     max_c = grid.fields[prod]['data'].max(axis=0)
     max_x = grid.fields[prod]['data'].max(axis=1)
     max_y = grid.fields[prod]['data'].max(axis=2).T
@@ -182,10 +186,11 @@ def natural_sort_key(s, _re=re.compile(r'(\d+)')):
 
 def cfrad(input_dir, output_dir, dualpol=False, gridder=False, plot=None,):
     '''
-        input_dir:(str) - Enter path of single sweep data directory,
-        output_dir:(str) - Enter the path for output data,
-        gridder:(bool) - True, False,
-        plot --> 'REF', 'VELH', 'WIDTH', 'ALL',
+        input_dir(str): Enter path of single sweep data directory,
+        output_dir(str): Enter the path for output data,
+        dualpol(bool): True, False. (If the data contains dual-pol products e.g., ZDR, RHOHV),
+        gridder(bool): True, False,
+        plot(str): 'REF', 'VELH', 'WIDTH', 'ALL',
     '''
     pathlib.Path(output_dir).mkdir(parents=True, exist_ok=True)
     in_dir = input_dir
