@@ -259,8 +259,10 @@ def cfrad(input_dir, output_dir, dualpol=False, gridder=False, plot=None,):
                 RHOHV1.extend(RHOHV)
                 HCLASS1.extend(HCLASS)
 
+        # Windows
         if bb[i][0].count("/") == 0:
             fname = bb[i][0].split("\\")[-1].split(".nc")[0]
+        # MacOS/Linux
         else:
             fname = bb[i][0].split("/")[-1].split(".nc")[0]
 
