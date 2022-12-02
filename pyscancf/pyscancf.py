@@ -232,6 +232,8 @@ def cfrad(input_dir, output_dir, dualpol=False, gridder=False, plot=None,):
         SQI1 = []
         RHOHV1 = []
         HCLASS1 = []
+        nyquist = []
+        unambigrange = []
         for j in range(0, 10):
             ds = Dataset(bb[i][j])
             az = ds.variables['radialAzim'][:]
@@ -250,6 +252,8 @@ def cfrad(input_dir, output_dir, dualpol=False, gridder=False, plot=None,):
             V1.extend(V)
             W1.extend(W)
             en.append(EN)
+            nyquist.append(ds.variables['nyquist'][:])
+            unambigrange.append(ds.variables['unambigRange'][:])
             if dualpol:
                 ZDR = ds.variables['ZDR'][:]
                 PHIDP = ds.variables['PHIDP'][:]
@@ -313,6 +317,22 @@ def cfrad(input_dir, output_dir, dualpol=False, gridder=False, plot=None,):
         W_dict = get_metadata('spectrum_width')
         W_dict['data'] = np.ma.array(W1)
         W_dict['units'] = 'm/s'
+        radar.instrument_parameters = {}
+        radar.instrument_parameters['nyquist_velocity'] = {
+            'units': 'm/s',
+            'comments': 'Unambiguous velocity',
+            'meta_group': 'instrument_parameters',
+            'long_name': 'Nyquist velocity'}
+        radar.instrument_parameters['nyquist_velocity']['data'] = np.ma.array(nyquist)
+        radar.instrument_parameters['unambiguous_range'] = {
+            'units': 'meters', 
+            'comments': 'Unambiguous range', 
+            'meta_group': 'instrument_parameters',
+            'long_name': 'Unambiguous range'}
+        radar.instrument_parameters['unambiguous_range']['data'] = np.ma.array(unambigrange)
+
+
+        
 
         if dualpol:
             ZDR_dict = get_metadata('differential_reflectivity')

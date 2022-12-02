@@ -27,6 +27,10 @@ tstart = dt.datetime.now()
 
 
 def plot_cappi(grid, prod, **kwargs):
+    ''' Plots CAPPI
+    grid: pyart grid object,
+    prod(str): radar product e.g., "REF", "VELH", "WIDTH", or "ALL"
+    '''
     max_c = grid.fields[prod]['data'].max(axis=0)
     max_x = grid.fields[prod]['data'].max(axis=1)
     max_y = grid.fields[prod]['data'].max(axis=2).T
@@ -182,10 +186,11 @@ def natural_sort_key(s, _re=re.compile(r'(\d+)')):
 
 def cfrad(input_dir, output_dir, dualpol=False, gridder=False, plot=None,):
     '''
-        input_dir:(str) - Enter path of single sweep data directory,
-        output_dir:(str) - Enter the path for output data,
-        gridder:(bool) - True, False,
-        plot --> 'REF', 'VELH', 'WIDTH', 'ALL',
+        input_dir(str): Enter path of single sweep data directory,
+        output_dir(str): Enter the path for output data,
+        dualpol(bool): True, False. (If the data contains dual-pol products e.g., ZDR, RHOHV),
+        gridder(bool): True, False,
+        plot(str): 'REF', 'VELH', 'WIDTH', 'ALL',
     '''
     pathlib.Path(output_dir).mkdir(parents=True, exist_ok=True)
     in_dir = input_dir
@@ -227,6 +232,8 @@ def cfrad(input_dir, output_dir, dualpol=False, gridder=False, plot=None,):
         SQI1 = []
         RHOHV1 = []
         HCLASS1 = []
+        nyquist = []
+        unambigrange = []
         for j in range(0, 10):
             ds = Dataset(bb[i][j])
             az = ds.variables['radialAzim'][:]
@@ -245,6 +252,8 @@ def cfrad(input_dir, output_dir, dualpol=False, gridder=False, plot=None,):
             V1.extend(V)
             W1.extend(W)
             en.append(EN)
+            nyquist.append(ds.variables['nyquist'][:])
+            unambigrange.append(ds.variables['unambigRange'][:])
             if dualpol:
                 ZDR = ds.variables['ZDR'][:]
                 PHIDP = ds.variables['PHIDP'][:]
@@ -259,15 +268,12 @@ def cfrad(input_dir, output_dir, dualpol=False, gridder=False, plot=None,):
                 RHOHV1.extend(RHOHV)
                 HCLASS1.extend(HCLASS)
 
-
-#         if len(bb[i][0].split('/')[-1]) < 30:
-#             split('/')[-1].split('-')[0]
-#         else:
-#             fname = bb[i][0].split('\\')[-1].split('-')[0]
-
-        fname = bb[i][0].split("/")[-1].split(".nc")[0]
-#         print(fname)
-#         print(os.path.join(out_dir)+'/'+'polar_'+fname+'.nc')
+        # Windows
+        if bb[i][0].count("/") == 0:
+            fname = bb[i][0].split("\\")[-1].split(".nc")[0]
+        # MacOS/Linux
+        else:
+            fname = bb[i][0].split("/")[-1].split(".nc")[0]
 
         radar = pyart.testing.make_empty_ppi_radar(
             ds.dimensions['bin'].size, ds.dimensions['radial'].size*10, 1)
@@ -311,6 +317,22 @@ def cfrad(input_dir, output_dir, dualpol=False, gridder=False, plot=None,):
         W_dict = get_metadata('spectrum_width')
         W_dict['data'] = np.ma.array(W1)
         W_dict['units'] = 'm/s'
+        radar.instrument_parameters = {}
+        radar.instrument_parameters['nyquist_velocity'] = {
+            'units': 'm/s',
+            'comments': 'Unambiguous velocity',
+            'meta_group': 'instrument_parameters',
+            'long_name': 'Nyquist velocity'}
+        radar.instrument_parameters['nyquist_velocity']['data'] = np.ma.array(nyquist)
+        radar.instrument_parameters['unambiguous_range'] = {
+            'units': 'meters', 
+            'comments': 'Unambiguous range', 
+            'meta_group': 'instrument_parameters',
+            'long_name': 'Unambiguous range'}
+        radar.instrument_parameters['unambiguous_range']['data'] = np.ma.array(unambigrange)
+
+
+        
 
         if dualpol:
             ZDR_dict = get_metadata('differential_reflectivity')
@@ -336,7 +358,7 @@ def cfrad(input_dir, output_dir, dualpol=False, gridder=False, plot=None,):
                             'SQI': SQI_dict, 'RHOHV': RHOHV_dict,
                             'HCLASS': HCLASS_dict}
 
-        pyart.io.write_cfradial(os.path.join(out_dir)+"/"+'polar_'+fname+'.nc',
+        pyart.io.write_cfradial(os.path.join(out_dir)+'polar_'+fname+'.nc',
                                 radar, format='NETCDF4')
         if gridder:
             grid = get_grid(radar)
