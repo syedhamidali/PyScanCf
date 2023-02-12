@@ -2,7 +2,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 # Author: Syed Hamid Ali - hamidsyed37@gmail.com
-# #### Importing Libraries
 """
 import warnings
 import datetime as dt
@@ -179,44 +178,38 @@ def get_grid(radar, grid_shape=(30, 500, 500), height=15, length=250):
         min_radius=length)
     return grid
 
-
 def natural_sort_key(s, _re=re.compile(r'(\d+)')):
     return [int(t) if i & 1 else t.lower() for i, t in enumerate(_re.split(s))]
 
-
-def cfrad(input_dir, output_dir, dualpol=False, gridder=False, plot=None,):
+def cfrad(input_dir, output_dir, scan_type="B", dualpol=False, gridder=False, plot=None,nf=None):
     '''
         input_dir(str): Enter path of single sweep data directory,
         output_dir(str): Enter the path for output data,
+        scan_type(str): "B", "C". B is for short range PPI, & C is for long range PPI.
         dualpol(bool): True, False. (If the data contains dual-pol products e.g., ZDR, RHOHV),
         gridder(bool): True, False,
         plot(str): 'REF', 'VELH', 'WIDTH', 'ALL',
+        nf(int): Number of files to group together
     '''
     pathlib.Path(output_dir).mkdir(parents=True, exist_ok=True)
     in_dir = input_dir
     out_dir = output_dir
-    files_list = sorted(glob.glob(in_dir+'//'+'*nc*'))
+    files_list = glob.glob(os.path.join(in_dir, "*nc*"))
     files = sorted(files_list, key=natural_sort_key)
     print('Number of files: ', len(files))
     bb = list()
-    for i in range(0, len(files), 10):
-        bb.append(files[i:i+10])
+    if scan_type == "B":
+        if nf is None:
+            nf = 10
+        for i in range(0, len(files), nf):
+            bb.append(files[i:i+nf])
+    elif scan_type == "C":
+        if nf is None:
+            nf = 2
+        for i in range(0, len(files), nf):
+            bb.append(files[i:i+nf])
     print('Total number of files will be created: ', len(bb))
     print('Merging all scans in one file')
-    en = []
-    a1 = []
-    t1 = []
-    e1 = []
-    Z1 = []
-    # T1 = []
-    V1 = []
-    W1 = []
-    ZDR1 = []
-    KDP1 = []
-    PHIDP1 = []
-    SQI1 = []
-    RHOHV1 = []
-    HCLASS1 = []
     for i in range(0, len(bb)):
         en = []
         a1 = []
@@ -234,7 +227,7 @@ def cfrad(input_dir, output_dir, dualpol=False, gridder=False, plot=None,):
         HCLASS1 = []
         nyquist = []
         unambigrange = []
-        for j in range(0, 10):
+        for j in range(0, nf):
             ds = Dataset(bb[i][j])
             az = ds.variables['radialAzim'][:]
             time = ds.variables['radialTime'][:]
@@ -268,16 +261,11 @@ def cfrad(input_dir, output_dir, dualpol=False, gridder=False, plot=None,):
                 RHOHV1.extend(RHOHV)
                 HCLASS1.extend(HCLASS)
 
-        # Windows
-        if bb[i][0].count("/") == 0:
-            fname = bb[i][0].split("\\")[-1].split(".nc")[0]
-        # MacOS/Linux
-        else:
-            fname = bb[i][0].split("/")[-1].split(".nc")[0]
+        fname = os.path.basename(bb[i][0]).split(".nc")[0]
 
         radar = pyart.testing.make_empty_ppi_radar(
-            ds.dimensions['bin'].size, ds.dimensions['radial'].size*10, 1)
-        radar.nsweeps = 10
+            ds.dimensions['bin'].size, ds.dimensions['radial'].size*nf, 1)
+        radar.nsweeps = nf
         radar.time['data'] = np.array(t1)
         # 'seconds since 1970-01-01T00:00:00Z'
         radar.time['units'] = ds.variables['radialTime'].units
@@ -295,12 +283,12 @@ def cfrad(input_dir, output_dir, dualpol=False, gridder=False, plot=None,):
 
         radar.sweep_start_ray_index['data'] = np.arange(
             0,
-            ds.dimensions['radial'].size*10,
+            ds.dimensions['radial'].size*nf,
             ds.dimensions['radial'].size)
 
         radar.sweep_end_ray_index['data'] = np.arange(
             ds.dimensions['radial'].size-1,
-            ds.dimensions['radial'].size*10,
+            ds.dimensions['radial'].size*nf,
             ds.dimensions['radial'].size)
 
         radar.azimuth['data'] = np.ma.array(a1)
@@ -331,9 +319,6 @@ def cfrad(input_dir, output_dir, dualpol=False, gridder=False, plot=None,):
             'long_name': 'Unambiguous range'}
         radar.instrument_parameters['unambiguous_range']['data'] = np.ma.array(unambigrange)
 
-
-        
-
         if dualpol:
             ZDR_dict = get_metadata('differential_reflectivity')
             ZDR_dict['data'] = np.ma.array(ZDR1)
@@ -357,9 +342,11 @@ def cfrad(input_dir, output_dir, dualpol=False, gridder=False, plot=None,):
                             'KDP': KDP_dict, 'PHIDP': PHIDP_dict,
                             'SQI': SQI_dict, 'RHOHV': RHOHV_dict,
                             'HCLASS': HCLASS_dict}
-
-        pyart.io.write_cfradial(os.path.join(out_dir)+'polar_'+fname+'.nc',
-                                radar, format='NETCDF4')
+        
+        out_file = f"cfrad_{fname}.nc"
+        out_path = os.path.join(out_dir, out_file)
+        pyart.io.write_cfradial(out_path, radar, format='NETCDF4')
+        
         if gridder:
             grid = get_grid(radar)
             if plot is not None:
@@ -375,7 +362,9 @@ def cfrad(input_dir, output_dir, dualpol=False, gridder=False, plot=None,):
                     plot_cappi(grid, 'WIDTH')
             else:
                 pass
-            pyart.io.write_grid(out_dir+'//'+'grid_'+fname+'.nc', grid)
+            out_file = f"grid_{fname}.nc"
+            out_path = os.path.join(out_dir, out_file)
+            pyart.io.write_grid(out_path, grid)
             del radar, grid
         else:
             pass

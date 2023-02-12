@@ -11,9 +11,9 @@ with open(path.join(here, "README.md"), encoding="utf-8") as f:
 
 setup(
     name="pyscancf",  # Required
-    version="1.0.22",  # Required
-    author='Syed Hamid Ali',
-    description="Creates PyArt compatible cf-radial data from single scans of IMD Radar data",  # Optional
+    version="1.0.23",  # Required
+    author='Hamid Ali Syed',
+    description="Creates cf-radial1 data from individual scans of IMD Radar data",  # Optional
     long_description=long_description,  # Optional
     long_description_content_type="text/markdown",  # Optional (see note above)
     url="https://github.com/syedhamidali/PyScanCf",  # Optional

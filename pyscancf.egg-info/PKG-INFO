@@ -1,9 +1,9 @@
 Metadata-Version: 2.1
 Name: pyscancf
-Version: 1.0.22
-Summary: Creates PyArt compatible cf-radial data from single scans of IMD Radar data
+Version: 1.0.23
+Summary: Creates cf-radial1 data from individual scans of IMD Radar data
 Home-page: https://github.com/syedhamidali/PyScanCf
-Author: Syed Hamid Ali
+Author: Hamid Ali Syed
 Project-URL: Bug Reports, https://github.com/syedhamidali/PyScanCf/issues
 Project-URL: Source, https://github.com/syedhamidali/PyScanCf/
 Keywords: IMD Radar cf-radial single sweeps radar weather meteorology
@@ -21,7 +21,7 @@ Description-Content-Type: text/markdown
 
 # PyScanCf
 
-Creates Py-ART compatible cf-radial data from single scans from Indian Meteorological Department (IMD) Radar data
+Creates Py-ART compatible cf-radial data from individual sweeps of Indian Meteorological Department (IMD) Radar data
 
 ## Description
 
