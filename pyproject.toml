@@ -5,6 +5,12 @@ requires = [
   "wheel",
 ]
 
+doc = [
+    "sphinx",
+    "sphinx-gallery>=0.4",
+    "myst-parser",
+    "netCDF4"
+]
 
 [tool.black]
 line-length = 88
