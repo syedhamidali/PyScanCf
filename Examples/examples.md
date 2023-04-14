@@ -1,1 +1,1 @@
-Go to https://github.com/syedhamidali/PyScanCf_examples for latest examples and instructions
+Go to <https://github.com/syedhamidali/pyscancf_examples> for latest examples and instructions

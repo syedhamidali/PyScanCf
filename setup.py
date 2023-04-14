@@ -1,7 +1,7 @@
-# Always prefer setuptools over distutils
 from setuptools import setup, find_packages
 from os import path
 from io import open
+import pyscancf._version_ as _v
 
 here = path.abspath(path.dirname(__file__))
 
@@ -10,10 +10,10 @@ with open(path.join(here, "README.md"), encoding="utf-8") as f:
     long_description = f.read()
 
 setup(
-    name="pyscancf",  # Required
-    version="1.0.23",  # Required
+    name="pyscancf",
+    version=_v._vers,
     author='Hamid Ali Syed',
-    description="Creates cf-radial1 data from individual scans of IMD Radar data",  # Optional
+    description="Creates cf-radial1 data from individual sweeps of IMD DWR data",  # Optional
     long_description=long_description,  # Optional
     long_description_content_type="text/markdown",  # Optional (see note above)
     url="https://github.com/syedhamidali/PyScanCf",  # Optional
@@ -23,11 +23,11 @@ setup(
         "Topic :: Scientific/Engineering",
         "Topic :: Scientific/Engineering :: Atmospheric Science",
         "License :: OSI Approved :: MIT License",
-        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
-    ],
+        "Programming Language :: Python :: 3.11",
+        ],
     keywords="IMD Radar cf-radial single sweeps radar weather meteorology",  # Optional
     packages=find_packages(exclude=["contrib", "docs", "tests"]),  # Required
     install_requires=["numpy","arm_pyart","netCDF4","wradlib","pandas"], # Required

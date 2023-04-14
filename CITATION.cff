@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+title: PyScanCf – The library for single sweep datasets of IMD weather radars
+version: 1.0.23
+date-released: 2023-04-13
+license: MIT
+repository-code: https://github.com/syedhamidali/PyScanCf
+description: Creates Py-ART compatible cf-radial data from individual sweeps of Indian Meteorological Department (IMD) Radar data
+keywords:
+  - tool
+  - software
+  - radar
+authors:
+  - family-names: "Syed"
+    given-names: "Hamid Ali"
+    orcid: "https://orcid.org/0000-0002-7188-2544"
+    affiliation: "Purdue University, Savitribai Phule Pune University, and Indian Institute of Tropical Meteorology"
+  - family-names: "Sayyed"
+    given-names: "Imran"
+    orcid: "https://orcid.org/0000-0002-2801-7619"
+    affiliation: "Indian Institute of Tropical Meteorology"
+  - family-names: "Kalapureddy"
+    given-names: "Madhu Chandra R"
+    orcid: "https://orcid.org/0000-0002-3233-6807"
+    affiliation: "Indian Institute of Tropical Meteorology"
+  - family-names: "Grandhi"
+    given-names: "Kishore Kumar"
+    orcid: "https://orcid.org/0000-0003-2191-1199"
+    affiliation: "Savitribai Phule Pune University"
+doi: 10.5281/zenodo.5574160
+url: https://github.com/syedhamidali/PyScanCf
