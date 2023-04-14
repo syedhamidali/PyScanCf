@@ -41,6 +41,7 @@ extensions = [
     "sphinx.ext.autosummary",
     "sphinx.ext.githubpages",
     "sphinx.ext.intersphinx",
+    "sphinx.ext.autosectionlabel",
     "sphinx.ext.mathjax",
     "sphinx.ext.viewcode",
     "IPython.sphinxext.ipython_directive",
@@ -67,6 +68,7 @@ exclude_patterns = []
 #
 html_theme = "pydata_sphinx_theme"
 
+needs_sphinx = '2.1'
 
 # Generate the API documentation when building
 autoclass_content = "both"
@@ -90,7 +92,6 @@ source_suffix = [".rst", ".md", ".ipynb"]
 
 # The master toctree document.
 master_doc = "index"
-
 
 
 # Add any paths that contain custom static files (such as style sheets) here,

@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>{{PyScanCf}}: An Open Source Library for IMD Weather Radar Data Processing &#8212; PyScanCf 1.0.23 documentation</title>
+    <title>PyScanCf: A Library for IMD Weather Radar Data &#8212; PyScanCf 1.0.24 documentation</title>
   
   
   
@@ -110,7 +110,7 @@
   
   
   
-    <p class="title logo__title">PyScanCf 1.0.23 documentation</p>
+    <p class="title logo__title">PyScanCf 1.0.24 documentation</p>
   
 </a></div>
     
@@ -266,13 +266,12 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="pyscancf-an-open-source-library-for-imd-weather-radar-data-processing">
-<h1>{{PyScanCf}}: An Open Source Library for IMD Weather Radar Data Processing<a class="headerlink" href="#pyscancf-an-open-source-library-for-imd-weather-radar-data-processing" title="Permalink to this heading">#</a></h1>
+  <section id="pyscancf-a-library-for-imd-weather-radar-data">
+<h1>PyScanCf: A Library for IMD Weather Radar Data<a class="headerlink" href="#pyscancf-a-library-for-imd-weather-radar-data" title="Permalink to this heading">#</a></h1>
 <p><strong>Release:</strong> {{release}}<br />
 <strong>Date:</strong> {{today}}</p>
-</section>
 <section id="welcome-to-pyscancf-s-documentation">
-<h1>Welcome to PyScanCf’s documentation!<a class="headerlink" href="#welcome-to-pyscancf-s-documentation" title="Permalink to this heading">#</a></h1>
+<h2>Welcome to PyScanCf’s documentation!<a class="headerlink" href="#welcome-to-pyscancf-s-documentation" title="Permalink to this heading">#</a></h2>
 <p>Go to <a class="github reference external" href="https://github.com/syedhamidali/pyscancf_examples">syedhamidali/pyscancf_examples</a> for latest examples and instructions</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -287,15 +286,15 @@ document.write(`
 <a class="reference external image-reference" href="https://gitter.im/PyScanCf/Issues?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge"><img alt="Join the chat at https://gitter.im/PyScanCf/Issues" src="https://badges.gitter.im/PyScanCf/Issues.svg" /></a>
 </section>
 <section id="what-is-pyscancf">
-<h1>What is PyScanCf?<a class="headerlink" href="#what-is-pyscancf" title="Permalink to this heading">#</a></h1>
+<h2>What is PyScanCf?<a class="headerlink" href="#what-is-pyscancf" title="Permalink to this heading">#</a></h2>
 <p>Creates Py-ART compatible cf-radial data from individual sweeps of Indian Meteorological Department (IMD) Radar data</p>
 <section id="description">
-<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">#</a></h2>
+<h3>Description<a class="headerlink" href="#description" title="Permalink to this heading">#</a></h3>
 <p>PyScanCf is a library for creating cfradial (polar) data from IMD radars that contain all 10 sweeps from single scans which are named as (Polar_ABC.nc) as well as gridded radar data from which are named as (grid_ABC.nc). Both formats are compatible for PyART. It uses Pyart to create grid data, so please remember to cite <strong>Py-ART</strong> as well.</p>
 </section>
 </section>
 <section id="installation">
-<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">#</a></h1>
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">#</a></h2>
 <p>Installing PyScanCf from source is the only way to get the latest updates and
 enhancement to the software that have not yet made it into a release.
 The latest source code for PyScanCf can be obtained from the GitHub repository,
@@ -317,10 +316,11 @@ The latest source code for PyScanCf can be obtained from the GitHub repository,
 </div>
 </section>
 <section id="citation">
-<h1>Citation<a class="headerlink" href="#citation" title="Permalink to this heading">#</a></h1>
+<h2>Citation<a class="headerlink" href="#citation" title="Permalink to this heading">#</a></h2>
 <a class="reference external image-reference" href="https://doi.org/10.5281/zenodo.5574160"><img alt="https://zenodo.org/badge/DOI/10.5281/zenodo.5881692.svg" src="https://zenodo.org/badge/DOI/10.5281/zenodo.5881692.svg" /></a>
 <p>Syed, H. A., Sayyed, I., Kalapureddy, M. C. R., &amp; Grandhi, K. K. (2021).
 PyScanCf – The library for single sweep datasets of IMD weather radars. Zenodo. DOI:10.5281/zenodo.5574160.</p>
+</section>
 <section id="pyscancf-tutorial-on-youtube">
 <h2>PyScanCf Tutorial on Youtube<a class="headerlink" href="#pyscancf-tutorial-on-youtube" title="Permalink to this heading">#</a></h2>
 <p><a class="reference external" href="https://youtu.be/OUrdhe5virA">https://youtu.be/OUrdhe5virA</a></p>
@@ -408,21 +408,17 @@ the figures will be saved in the directory from where you launched the notebook<
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">{{PyScanCf}}: An Open Source Library for IMD Weather Radar Data Processing</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#welcome-to-pyscancf-s-documentation">Welcome to PyScanCf’s documentation!</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-pyscancf">What is PyScanCf?</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description">Description</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#welcome-to-pyscancf-s-documentation">Welcome to PyScanCf’s documentation!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-pyscancf">What is PyScanCf?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#description">Description</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#citation">Citation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation">Citation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscancf-tutorial-on-youtube">PyScanCf Tutorial on Youtube</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-usage">Quick Usage</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latest-examples">Latest Examples</a></li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
   <div class="sidebar-secondary-item">

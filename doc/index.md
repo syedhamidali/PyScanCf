@@ -1,4 +1,4 @@
-# {{PyScanCf}}: An Open Source Library for IMD Weather Radar Data Processing
+# PyScanCf: A Library for IMD Weather Radar Data
 
 **Release:** {{release}}\
 **Date:** {{today}}
@@ -9,7 +9,7 @@
 % You can adapt this file completely to your liking, but it should at least
 % contain the root `toctree` directive.
 
-# Welcome to PyScanCf's documentation!
+## Welcome to PyScanCf's documentation!
 
 
 ```{include} ../Examples/examples.md
@@ -31,15 +31,15 @@ notebooks/tutorial.ipynb
 :target: https://gitter.im/PyScanCf/Issues?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge
 ```
 
-# What is PyScanCf?
+## What is PyScanCf?
 
 Creates Py-ART compatible cf-radial data from individual sweeps of Indian Meteorological Department (IMD) Radar data
 
-## Description
+### Description
 
 PyScanCf is a library for creating cfradial (polar) data from IMD radars that contain all 10 sweeps from single scans which are named as (Polar_ABC.nc) as well as gridded radar data from which are named as (grid_ABC.nc). Both formats are compatible for PyART. It uses Pyart to create grid data, so please remember to cite **Py-ART** as well.
 
-# Installation
+## Installation
 
 Installing PyScanCf from source is the only way to get the latest updates and
 enhancement to the software that have not yet made it into a release.
@@ -67,7 +67,7 @@ Or, Install via pip:
 pip install pyscancf
 ```
 
-# Citation
+## Citation
 
 ```{image} https://zenodo.org/badge/DOI/10.5281/zenodo.5881692.svg
 :target: https://doi.org/10.5281/zenodo.5574160
