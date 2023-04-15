@@ -6,9 +6,8 @@ Top-level package (:mod:`pyscancf`)
 .. currentmodule:: pyscancf
 """
 
-
-from .pyscancf import cfrad, get_grid
-from .maxcappi import plot_cappi
+from pyscancf.pyscancf import cfrad, get_grid
+from pyscancf.maxcappi import plot_cappi
 import warnings as _warnings
 from . import _version_ as _v
 

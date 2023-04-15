@@ -23,6 +23,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.abspath('..'))
+sys.path.insert(0, os.path.abspath('../pyscancf'))
 
 with open('../pyscancf/_version_.py') as f:
     exec(f.read())
@@ -52,6 +53,8 @@ extensions = [
     "myst_nb",
 ]
 
+numpydoc_show_class_members = False
+
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
@@ -73,7 +76,7 @@ needs_sphinx = '2.1'
 # Generate the API documentation when building
 autoclass_content = "both"
 
-autosummary_generate = True
+autosummary_generate = False
 autosummary_imported_members = True
 
 # Otherwise, the Return parameter list looks different from the Parameters list

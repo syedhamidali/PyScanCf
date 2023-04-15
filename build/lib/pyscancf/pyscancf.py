@@ -3,18 +3,18 @@
 # coding: utf-8
 # Author: Syed Hamid Ali - hamidsyed37@gmail.com
 """
+
 import warnings
 import datetime as dt
 import numpy as np
-from netCDF4 import Dataset
 import glob
 import re
 import os
 import pathlib
+from netCDF4 import Dataset
 import pyart
 from pyart.config import get_metadata
-from .maxcappi import plot_cappi
-
+from pyscancf.maxcappi import plot_cappi
 warnings.filterwarnings('ignore')
 tstart = dt.datetime.now()
 
@@ -22,9 +22,13 @@ tstart = dt.datetime.now()
 def get_grid(radar, grid_shape=(30, 500, 500), height=15, length=250):
     """
     Returns grid object from radar object.
+
     grid_shape=(60, 500, 500), no. of bins of z,y,x respectively.
+
     height:(int) = 15, height in km
+
     length:(int) = 250, Range of radar in km
+
     """
     grid = pyart.map.grid_from_radars(
         radar, grid_shape=grid_shape,
@@ -41,18 +45,23 @@ def natural_sort_key(s, _re=re.compile(r'(\d+)')):
     return [int(t) if i & 1 else t.lower() for i, t in enumerate(_re.split(s))]
 
 
-def cfrad(input_dir, output_dir, scan_type="B",
-          dualpol=False, gridder=False, plot=None, nf=None):
+def cfrad(input_dir, output_dir, scan_type="B", dualpol=False, gridder=False, plot=None, nf=None):
     ''' Aggregates data to cfradial1 data.
-        input_dir(str): Enter path of single sweep data directory,
-        output_dir(str): Enter the path for output data,
-        scan_type(str): "B", "C".
-                B is for short range PPI, & C is for long range PPI.
-        dualpol(bool): True, False.
-                (If the data contains dual-pol products e.g., ZDR, RHOHV),
-        gridder(bool): True, False,
-        plot(str): 'REF', 'VELH', 'WIDTH', 'ALL',
-        nf(int): Number of files to group together
+
+    input_dir(str): Enter path of single sweep data directory,
+
+    output_dir(str): Enter the path for output data,
+
+    scan_type(str): "B", "C". B is for short range PPI, & C is for long range PPI.
+
+    dualpol(bool): True, False. (If the data contains dual-pol products e.g., ZDR, RHOHV),
+
+    gridder(bool): True, False,
+
+    plot(str): 'REF', 'VELH', 'WIDTH', 'ALL',
+
+    nf(int): Number of files to group together
+
     '''
     pathlib.Path(output_dir).mkdir(parents=True, exist_ok=True)
     in_dir = input_dir
