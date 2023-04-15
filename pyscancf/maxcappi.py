@@ -4,7 +4,7 @@
 @author: Hamid Ali Syed
 @email: hamidsyed37[at]gmail[dot]com
 '''
-# Filter out the Py-ART welcome message
+
 import pyart
 import matplotlib.pyplot as plt
 from matplotlib.ticker import NullFormatter
@@ -62,7 +62,7 @@ def plot_crosshair(ax_xy):
 
 def plot_cappi(grid, moment, cmap=None, vmin=None, vmax=None,
                title=None, colorbar=True, range_rings=True, crosshair=True,
-               dpi=100, show_progress=True, savedir=None, **kwargs):
+               dpi=100, show_progress=True, savedir=None, show_figure=True, **kwargs):
     ''' Plots CAPPI
     grid: pyart grid object,
     moment(str): radar moment e.g., "REF", "VELH", "WIDTH"
@@ -242,4 +242,7 @@ def plot_cappi(grid, moment, cmap=None, vmin=None, vmax=None,
         figname = f"{savedir}{os.sep}{title}_{radar_name}_{figtime}.png"
         plt.savefig(fname=figname, dpi=dpi, bbox_inches='tight')
         print(f'Figure(s) saved as {figname}')
-    fig.show()
+    if show_figure:
+        fig.show()
+    else:
+        plt.close()
