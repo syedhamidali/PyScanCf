@@ -8,6 +8,11 @@ Creates Py-ART compatible cf-radial data from individual sweeps of Indian Meteor
 
 PyScanCf is a library for creating cfradial (polar) data from IMD radars that contain all 10 sweeps from single scans which are named as (Polar_ABC.nc) as well as gridded radar data from which are named as (grid_ABC.nc). Both formats are compatible for PyART. It uses Pyart to create grid data, so please remember to cite **Py-ART** as well.
 
+Latest Documentation
+====================
+
+https://syedha.com/PyScanCf/
+
 Installing from source
 ======================
 
