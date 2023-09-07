@@ -15,7 +15,7 @@ within PyScanCf for those in the public API.
 .. currentmodule:: maxcappi
 .. autofunction:: maxcappi.plot_cappi
 ```
-<!-- 
+<!--
 ```{toctree}
 :maxdepth: 2
 maxcappi

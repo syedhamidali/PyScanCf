@@ -1,6 +1,6 @@
-'''
+"""
 Colormap created using https://syedha.com/colormaps
-'''
+"""
 # import numpy as np
 # import matplotlib as mpl
 # import os
@@ -34,12 +34,13 @@ import numpy as np
 import matplotlib as mpl
 import os
 
+
 def register_colormap(data_dir):
     # Define colormap data
     # data_dir = os.path.split(__file__)[0]
-    syed_spectral_vals = np.genfromtxt(os.path.join(data_dir, 'SyedSpectral_RGB.txt'))
+    syed_spectral_vals = np.genfromtxt(os.path.join(data_dir, "SyedSpectral_RGB.txt"))
     cmap_data = {
-        'SyedSpectral': syed_spectral_vals,
+        "SyedSpectral": syed_spectral_vals,
     }
 
     # Register colormaps
@@ -53,5 +54,6 @@ def register_colormap(data_dir):
         # Register the colormap
         mpl.colormaps.register(cmap=cmap, name=cmap_name, force=True)
 
+
 # data_dir = os.path.split(__file__)[0]
-SyedSpectral = register_colormap(data_dir = os.path.split(__file__)[0])
+SyedSpectral = register_colormap(data_dir=os.path.split(__file__)[0])
