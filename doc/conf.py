@@ -13,23 +13,23 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'PyScanCf'
-copyright = '2023, PyScanCf'
-author = 'Hamid Ali Syed'
+project = "PyScanCf"
+copyright = "2023, PyScanCf"
+author = "Hamid Ali Syed"
 
 # The full version, including alpha/beta/rc tags
 
 import os
 import sys
 
-sys.path.insert(0, os.path.abspath('..'))
-sys.path.insert(0, os.path.abspath('../pyscancf'))
+sys.path.insert(0, os.path.abspath(".."))
+sys.path.insert(0, os.path.abspath("../pyscancf"))
 
-with open('../pyscancf/_version_.py') as f:
+with open("../pyscancf/_version_.py") as f:
     exec(f.read())
-version = _vers
+# version = _vers
 
-release = version
+# release = version
 
 # -- General configuration ---------------------------------------------------
 
@@ -56,7 +56,7 @@ extensions = [
 numpydoc_show_class_members = False
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = ["_templates"]
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -71,7 +71,7 @@ exclude_patterns = []
 #
 html_theme = "pydata_sphinx_theme"
 
-needs_sphinx = '2.1'
+needs_sphinx = "2.1"
 
 # Generate the API documentation when building
 autoclass_content = "both"
@@ -100,7 +100,7 @@ master_doc = "index"
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+html_static_path = ["_static"]
 
 # Don't execute the jupyter notebooks
 nb_execution_mode = "off"
