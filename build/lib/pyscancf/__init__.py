@@ -8,10 +8,9 @@ Top-level package (:mod:`pyscancf`)
 
 import os
 import warnings as _warnings
-
-from . import _version_ as _v
+from .cmapmaker import syed_spectral_vals
 from .cmapmaker import register_colormap
-from .cmapmaker import cmap_data
+from . import _version_ as _v
 from .maxcappi import plot_cappi
 from .pyscancf import cfrad, get_grid
 
@@ -28,11 +27,11 @@ citation_text = (
 )
 print(citation_text)
 
-# Usage: Register the colormaps when the package is imported
-# cmap_data = {
-#     "SyedSpectral": syed_spectral_vals,  # Use the data defined in your __init__.py file
-# }
+cmap_data = {
+    "SyedSpectral": syed_spectral_vals,  # Use the data defined in your script
+}
 
-register_colormap(cmap_data)
+SyedSpectral = register_colormap(cmap_data)
+SyedSpectral
 
 __all__ = [s for s in dir() if not s.startswith("_")]

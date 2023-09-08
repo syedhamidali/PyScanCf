@@ -279,8 +279,8 @@ def register_colormap(cmap_data):
 
 
 # Usage
-cmap_data = {
-    "SyedSpectral": syed_spectral_vals,  # Use the data defined in your script
-}
+# cmap_data = {
+#     "SyedSpectral": syed_spectral_vals,  # Use the data defined in your script
+# }
 
-SyedSpectral = register_colormap(cmap_data)
+# SyedSpectral = register_colormap(cmap_data)

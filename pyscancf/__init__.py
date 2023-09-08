@@ -8,6 +8,8 @@ Top-level package (:mod:`pyscancf`)
 
 import os
 import warnings as _warnings
+from .cmapmaker import syed_spectral_vals
+from .cmapmaker import register_colormap
 from . import _version_ as _v
 from .maxcappi import plot_cappi
 from .pyscancf import cfrad, get_grid
@@ -24,5 +26,12 @@ citation_text = (
     + "\n## Zenodo. doi:10.5281/zenodo.5574160.\n"
 )
 print(citation_text)
+
+cmap_data = {
+    "SyedSpectral": syed_spectral_vals,  # Use the data defined in your script
+}
+
+SyedSpectral = register_colormap(cmap_data)
+SyedSpectral
 
 __all__ = [s for s in dir() if not s.startswith("_")]
