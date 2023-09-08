@@ -3,9 +3,11 @@
 .gitignore
 .nojekyll
 .pre-commit-config.yaml
+API.html
 CITATION.cff
 License
 README.md
+Untitled.ipynb
 genindex.html
 index.html
 objects.inv
@@ -17,8 +19,13 @@ setup.py
 test_pyscancf.py
 .github/workflows/pylint.yml
 Examples/examples.md
+_images/a48a340702cb8e8d6ac9e3f971f452a8d6a81f68cdc5fef9e335b9a3f010853e.png
 _images/cappi.png
 _images/de6e48ee97d13447ab6739f9d926a95b20e4aab72098168e6bc3eae57a94db31.png
+_modules/index.html
+_modules/maxcappi.html
+_modules/pyscancf.html
+_sources/API.md.txt
 _sources/index.md.txt
 _sources/notebooks/tutorial.ipynb.txt
 _static/_sphinx_javascript_frameworks_compat.js
@@ -137,7 +144,9 @@ doc/_build/jupyter_execute/de6e48ee97d13447ab6739f9d926a95b20e4aab72098168e6bc3e
 doc/_build/jupyter_execute/notebooks/tutorial.ipynb
 doc/_static/cappi.png
 doc/notebooks/tutorial.ipynb
+notebooks/tutorial.html
 pyscancf/.DS_Store
+pyscancf/SyedSpectral_RGB.txt
 pyscancf/__init__.py
 pyscancf/_version_.py
 pyscancf/cmapmaker.py

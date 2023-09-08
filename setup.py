@@ -33,6 +33,7 @@ setup(
     ],
     keywords="IMD Radar cf-radial single sweeps radar weather meteorology",  # Optional
     packages=find_packages(exclude=["contrib", "docs", "tests"]),  # Required
+    package_data={'pyscancf': ['SyedSpectral_RGB.txt']},
     install_requires=["numpy", "arm_pyart", "netCDF4", "cartopy", "pandas"],  # Required
     project_urls={  # Optional
         "Bug Reports": "https://github.com/syedhamidali/PyScanCf/issues",
