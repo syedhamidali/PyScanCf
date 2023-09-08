@@ -61,24 +61,17 @@ def cfrad(
     plot=None,
     nf=None,
 ):
-    """Aggregates data to cfradial1 data.
-
+    """
+    Aggregates data to cfradial1 data.
     input_dir(str): Enter path of single sweep data directory,
-
     output_dir(str): Enter the path for output data,
-
     scan_type(str): "B", "C". B is for short range PPI,
                 & C is for long range PPI.
-
     dualpol(bool): True, False. (If the data contains
                 dual-pol products e.g., ZDR, RHOHV),
-
     gridder(bool): True, False,
-
     plot(str): 'REF', 'VELH', 'WIDTH', 'ALL',
-
     nf(int): Number of files to group together
-
     """
     pathlib.Path(output_dir).mkdir(parents=True, exist_ok=True)
     in_dir = input_dir

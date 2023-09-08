@@ -282,4 +282,5 @@ def register_colormap(cmap_data):
 cmap_data = {
     "SyedSpectral": syed_spectral_vals,  # Use the data defined in your script
 }
-# register_colormap(cmap_data)
+
+SyedSpectral = register_colormap(cmap_data)
