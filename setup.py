@@ -3,7 +3,7 @@ from os import path
 
 from setuptools import find_packages, setup
 
-import pyscancf._version_ as _v
+from pyscancf import _version_ as _v
 
 here = path.abspath(path.dirname(__file__))
 
@@ -26,14 +26,11 @@ setup(
         "Topic :: Scientific/Engineering",
         "Topic :: Scientific/Engineering :: Atmospheric Science",
         "License :: OSI Approved :: MIT License",
-        "Programming Language :: Python :: 3.8",
-        "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
     ],
     keywords="IMD Radar cf-radial single sweeps radar weather meteorology",  # Optional
     packages=find_packages(exclude=["contrib", "docs", "tests"]),  # Required
-    package_data={'pyscancf': ['SyedSpectral_RGB.txt']},
     install_requires=["numpy", "arm_pyart", "netCDF4", "cartopy", "pandas"],  # Required
     project_urls={  # Optional
         "Bug Reports": "https://github.com/syedhamidali/PyScanCf/issues",

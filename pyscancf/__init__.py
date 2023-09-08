@@ -11,6 +11,7 @@ import warnings as _warnings
 
 from . import _version_ as _v
 from .cmapmaker import register_colormap
+from .cmapmaker import cmap_data
 from .maxcappi import plot_cappi
 from .pyscancf import cfrad, get_grid
 
@@ -27,8 +28,11 @@ citation_text = (
 )
 print(citation_text)
 
-# Get the directory where the __init__.py file is located
-data_dir = os.path.dirname(__file__)
-register_colormap(data_dir)
+# Usage: Register the colormaps when the package is imported
+# cmap_data = {
+#     "SyedSpectral": syed_spectral_vals,  # Use the data defined in your __init__.py file
+# }
+
+register_colormap(cmap_data)
 
 __all__ = [s for s in dir() if not s.startswith("_")]

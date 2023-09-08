@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: pyscancf
-Version: 1.0.25
+Version: 1.0.26
 Summary: Creates cf-radial1 data from individual         sweeps of IMD DWR data
 Home-page: https://github.com/syedhamidali/PyScanCf
 Author: Hamid Ali Syed
@@ -11,8 +11,6 @@ Classifier: Development Status :: 4 - Beta
 Classifier: Topic :: Scientific/Engineering
 Classifier: Topic :: Scientific/Engineering :: Atmospheric Science
 Classifier: License :: OSI Approved :: MIT License
-Classifier: Programming Language :: Python :: 3.8
-Classifier: Programming Language :: Python :: 3.9
 Classifier: Programming Language :: Python :: 3.10
 Classifier: Programming Language :: Python :: 3.11
 Description-Content-Type: text/markdown

@@ -12,15 +12,14 @@
 
 
 # -- Project information -----------------------------------------------------
+import os
+import sys
 
 project = "PyScanCf"
 copyright = "2023, PyScanCf"
 author = "Hamid Ali Syed"
 
 # The full version, including alpha/beta/rc tags
-
-import os
-import sys
 
 sys.path.insert(0, os.path.abspath(".."))
 sys.path.insert(0, os.path.abspath("../pyscancf"))

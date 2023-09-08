@@ -14,8 +14,6 @@ from netCDF4 import num2date
 
 # from . import register_colormap
 
-# SyedSpectral = register_colormap(data_dir = os.path.split(__file__)[0])
-
 # Cmaps config
 CAPPI_CMAPS = {
     "REF": {
