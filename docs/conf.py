@@ -24,9 +24,13 @@ author = "Hamid Ali Syed"
 sys.path.insert(0, os.path.abspath(".."))
 sys.path.insert(0, os.path.abspath("../pyscancf"))
 
-with open("../pyscancf/_version_.py") as f:
-    exec(f.read())
-version = _vers
+import pyscancf
+
+# with open("../pyscancf/_version_.py") as f:
+#     exec(f.read())
+# version = _vers
+
+version = pyscancf.__version__
 
 release = version
 html_title = project
