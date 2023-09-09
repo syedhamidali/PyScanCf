@@ -19,7 +19,7 @@ _warnings.filterwarnings("always", category=DeprecationWarning, module="pyscancf
 __version__ = _v.get_version()
 
 citation_text = (
-    "## Cite PyScanCf:\n\n## Syed, H. A.,"
+    "\n## Cite PyScanCf:\n\n## Syed, H. A.,"
     + "Sayyed, I., Kalapureddy, M. C. R., & Grandhi, K. K."
     + "(2021). \n## PyScanCf – The library for "
     + "individual sweep datasets of IMD weather radars. "
