@@ -70,7 +70,7 @@ def cfrad(
     dualpol(bool): True, False. (If the data contains
                 dual-pol products e.g., ZDR, RHOHV),
     gridder(bool): True, False,
-    plot(str): 'REF', 'VELH', 'WIDTH', 'ALL',
+    plot(str): 'REF', 'VEL', 'WIDTH', 'ALL',
     nf(int): Number of files to group together
     """
     pathlib.Path(output_dir).mkdir(parents=True, exist_ok=True)
@@ -90,15 +90,15 @@ def cfrad(
             nf = 2
         for i in range(0, len(files), nf):
             bb.append(files[i : i + nf])
-    print("Total number of files will be created: ", len(bb))
-    print("Merging all scans in one file")
+    print(f"Total no. of output files: {len(bb)}.")
+    print("Merging all scans into one Volume")
     for i in range(0, len(bb)):
         en = []
         a1 = []
         t1 = []
         e1 = []
         Z1 = []
-        # T1 = []
+        T1 = []
         V1 = []
         W1 = []
         ZDR1 = []
@@ -115,7 +115,7 @@ def cfrad(
             time = ds.variables["radialTime"][:]
             ele = ds.variables["radialElev"][:]
             Z = ds.variables["Z"][:]
-            # T = ds.variables['T'][:]
+            T = ds.variables['T'][:]
             V = ds.variables["V"][:]
             W = ds.variables["W"][:]
             EN = ds.variables["elevationNumber"][:]
@@ -123,25 +123,37 @@ def cfrad(
             t1.extend(time)
             e1.extend(ele)
             Z1.extend(Z)
-            # T1.extend(T)
+            T1.extend(T)
             V1.extend(V)
             W1.extend(W)
             en.append(EN)
             nyquist.append(ds.variables["nyquist"][:])
             unambigrange.append(ds.variables["unambigRange"][:])
             if dualpol:
-                ZDR = ds.variables["ZDR"][:]
-                PHIDP = ds.variables["PHIDP"][:]
-                KDP = ds.variables["KDP"][:]
-                SQI = ds.variables["SQI"][:]
-                RHOHV = ds.variables["RHOHV"][:]
-                HCLASS = ds.variables["HCLASS"][:]
-                ZDR1.extend(ZDR)
-                KDP1.extend(KDP)
-                PHIDP1.extend(PHIDP)
-                SQI1.extend(SQI)
-                RHOHV1.extend(RHOHV)
-                HCLASS1.extend(HCLASS)
+                if "ZDR" in ds.variables:
+                    ZDR = ds.variables["ZDR"][:]
+                    ZDR1.extend(ZDR)
+
+                if "PHIDP" in ds.variables:
+                    PHIDP = ds.variables["PHIDP"][:]
+                    PHIDP1.extend(PHIDP)
+
+                if "KDP" in ds.variables:
+                    KDP = ds.variables["KDP"][:]
+                    KDP1.extend(KDP)
+
+                if "SQI" in ds.variables:
+                    SQI = ds.variables["SQI"][:]
+                    SQI1.extend(SQI)
+
+                if "RHOHV" in ds.variables:
+                    RHOHV = ds.variables["RHOHV"][:]
+                    RHOHV1.extend(RHOHV)
+
+                if "HCLASS" in ds.variables:
+                    HCLASS = ds.variables["HCLASS"][:]
+                    HCLASS1.extend(HCLASS)
+
 
         fname = os.path.basename(bb[i][0]).split(".nc")[0]
 
@@ -183,9 +195,9 @@ def cfrad(
         ref_dict = get_metadata("reflectivity")
         ref_dict["data"] = np.ma.array(Z1)
         ref_dict["units"] = "dBZ"
-        VELH_dict = get_metadata("velocity")
-        VELH_dict["data"] = np.ma.array(V1)
-        VELH_dict["units"] = "m/s"
+        VEL_dict = get_metadata("velocity")
+        VEL_dict["data"] = np.ma.array(V1)
+        VEL_dict["units"] = "m/s"
         W_dict = get_metadata("spectrum_width")
         W_dict["data"] = np.ma.array(W1)
         W_dict["units"] = "m/s"
@@ -207,33 +219,48 @@ def cfrad(
             unambigrange
         )
 
+        radar.fields = {"REF": ref_dict, "VEL": VEL_dict, "WIDTH": W_dict}
+
         if dualpol:
             ZDR_dict = get_metadata("differential_reflectivity")
-            ZDR_dict["data"] = np.ma.array(ZDR1)
+            ZDR_dict["units"] = "dB"
+            if "ZDR" in ds.variables:
+                ZDR_dict["data"] = np.ma.array(ZDR1)
+                radar.fields["ZDR"] = ZDR_dict
+            
             PHIDP_dict = get_metadata("differential_phase")
-            PHIDP_dict["data"] = np.ma.array(PHIDP1)
+            PHIDP_dict["units"] = "degrees"
+            if "PHIDP" in ds.variables:
+                PHIDP_dict["data"] = np.ma.array(PHIDP1)
+                radar.fields["PHIDP"] = PHIDP_dict
+            
+
             KDP_dict = get_metadata("specific_differential_phase")
-            KDP_dict["data"] = np.ma.array(KDP1)
+            KDP_dict["units"] = "degrees/km"
+            if "KDP" in ds.variables:
+                KDP_dict["data"] = np.ma.array(KDP1)
+                radar.fields["KDP"] = KDP_dict
+
+
             RHOHV_dict = get_metadata("cross_correlation_ratio")
-            RHOHV_dict["data"] = np.ma.array(RHOHV1)
+            RHOHV_dict["units"] = "unitless"
+            if "RHOHV" in ds.variables:
+                RHOHV_dict["data"] = np.ma.array(RHOHV1)
+                radar.fields["RHOHV"] = RHOHV_dict 
+            
+
             SQI_dict = get_metadata("normalized_coherent_power")
-            SQI_dict["data"] = np.ma.array(SQI1)
+            SQI_dict["units"] = "unitless"
+            if "SQI" in ds.variables:
+                SQI_dict["data"] = np.ma.array(SQI1)
+                radar.fields["SQI"] = SQI_dict
+            
+
             HCLASS_dict = get_metadata("radar_echo_classification")
-            HCLASS_dict["data"] = np.ma.array(HCLASS1)
-        if dualpol is False:
-            radar.fields = {"REF": ref_dict, "VELH": VELH_dict, "WIDTH": W_dict}
-        else:
-            radar.fields = {
-                "REF": ref_dict,
-                "VELH": VELH_dict,
-                "WIDTH": W_dict,
-                "ZDR": ZDR_dict,
-                "KDP": KDP_dict,
-                "PHIDP": PHIDP_dict,
-                "SQI": SQI_dict,
-                "RHOHV": RHOHV_dict,
-                "HCLASS": HCLASS_dict,
-            }
+            HCLASS_dict["units"] = "unitless"
+            if "HCLASS" in ds.variables:
+                HCLASS_dict["data"] = np.ma.array(HCLASS1)
+                radar.fields["HCLASS"] = HCLASS_dict
 
         out_file = f"cfrad_{fname}.nc"
         out_path = os.path.join(out_dir, out_file)
@@ -244,13 +271,13 @@ def cfrad(
             if plot is not None:
                 if plot == "REF":
                     plot_cappi(grid, "REF")
-                if plot == "VELH":
-                    plot_cappi(grid, "VELH")
+                if plot == "VEL":
+                    plot_cappi(grid, "VEL")
                 if plot == "WIDTH":
                     plot_cappi(grid, "WIDTH")
                 if plot == "ALL":
                     plot_cappi(grid, "REF")
-                    plot_cappi(grid, "VELH")
+                    plot_cappi(grid, "VEL")
                     plot_cappi(grid, "WIDTH")
             else:
                 pass

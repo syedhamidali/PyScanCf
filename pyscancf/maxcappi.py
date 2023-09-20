@@ -34,7 +34,7 @@ CAPPI_CMAPS = {
             "Z",
         ],
     },
-    "VELH": {
+    "VEL": {
         "cmap": pyart.graph.cm.NWSVel,
         "vmin": -30,
         "vmax": 30,
@@ -109,7 +109,7 @@ def plot_cappi(
 ):
     """Plots CAPPI
     grid: pyart grid object,
-    moment(str): radar moment e.g., "REF", "VELH", "WIDTH"
+    moment(str): radar moment e.g., "REF", "VEL", "WIDTH"
     cmap: matplotlib colormap, optional
     vmin: minimum value for color scaling, optional
     vmax: maximum value for color scaling, optional

@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: pyscancf
-Version: 1.0.26a0
+Version: 1.0.27
 Summary: Creates cf-radial1 data from individual         sweeps of IMD DWR data
 Home-page: https://github.com/syedhamidali/PyScanCf
 Author: Hamid Ali Syed

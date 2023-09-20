@@ -1,4 +1,4 @@
-_vers = "1.0.26-alpha"
+_vers = "1.0.27"
 
 
 def get_version():
