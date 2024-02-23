@@ -1,0 +1,25 @@
+name: pcf
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python >=3.9,<3.12
+  - pydata-sphinx-theme
+  - pip
+  - myst-parser
+  - sphinx
+  - sphinx-copybutton
+  - sphinx-favicon
+  - nbsphinx
+  - ipykernel
+  - netCDF4
+  - pyproj
+  - xarray
+  - cartopy
+  - cmweather
+  - dask
+  - matplotlib-base
+  - scipy
+  - boto3
+  - arm_pyart
+  - nbclassic

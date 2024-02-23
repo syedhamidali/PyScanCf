@@ -5,7 +5,7 @@ class TestPyScanCf(unittest.TestCase):
     def test_version(self):
         import pyscancf
 
-        self.assertEqual(pyscancf.__version__, "1.0.26")
+        self.assertEqual(pyscancf.__version__, "1.0.29")
 
 
 def suite():

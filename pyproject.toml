@@ -1,18 +1,61 @@
+[project]
+name = "pyscancf"
+version = "1.0.29"
+description = "Creates cf-radial1 data from individual sweeps of IMD DWR data"
+readme = "README.md"
+authors = [{ name = "Hamid Ali Syed", email = "windcirculation@gmail.com" }] # Replace with your actual email
+license = { file = "LICENSE" }
+keywords = ["IMD", "Radar", "cf-radial", "single sweeps", "radar", "weather", "meteorology"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Atmospheric Science",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+[project.urls]
+Issues = "https://github.com/syedhamidali/PyScanCf/issues"
+Homepage = "https://github.com/syedhamidali/PyScanCf/"
+
 [build-system]
 requires = [
-  "setuptools",
-  "setuptools_scm>=6.2",
-  "wheel",
-  "netCDF4",
+    "setuptools>=45",
+    "wheel",
+    "setuptools_scm[toml]>=7.0",
+]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+readme = {file = ["README.md", "docs/history.md"], content-type = "text/markdown"}
+
+[tool.setuptools.dynamic.optional-dependencies]
+dev = { file = "requirements_dev.txt"}
+
+[tool.black]
+target-version = ["py39"]
+line-length = 88
+
+[tool.ruff]
+target-version = "py39"
+builtins = ["ellipsis"]
+exclude = [
+    ".eggs",
+    "doc",
 ]
 
-doc = [
-    "sphinx",
-    "sphinx-gallery>=0.4",
-    "myst-parser",
-    "netCDF4"
+[tool.ruff.lint]
+# E402: module level import not at top of file
+# E501: line too long - let black worry about that
+# E731: do not assign a lambda expression, use a def
+ignore = [
+    "E402",
+    "E501",
+    "E731",
 ]
-
 select = [
     # Pyflakes
     "F",
@@ -24,3 +67,6 @@ select = [
     # Pyupgrade
     "UP",
 ]
+
+[tool.ruff.lint.isort]
+known-first-party = ["pyscancf"]

@@ -1,5 +1,0 @@
-numpy
-arm_pyart
-netCDF4
-cartopy
-pandas

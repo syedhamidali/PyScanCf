@@ -115,7 +115,7 @@ def cfrad(
             time = ds.variables["radialTime"][:]
             ele = ds.variables["radialElev"][:]
             Z = ds.variables["Z"][:]
-            T = ds.variables['T'][:]
+            # T = ds.variables['T'][:]
             V = ds.variables["V"][:]
             W = ds.variables["W"][:]
             EN = ds.variables["elevationNumber"][:]
@@ -123,7 +123,7 @@ def cfrad(
             t1.extend(time)
             e1.extend(ele)
             Z1.extend(Z)
-            T1.extend(T)
+            # T1.extend(T)
             V1.extend(V)
             W1.extend(W)
             en.append(EN)
