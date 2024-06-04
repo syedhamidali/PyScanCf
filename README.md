@@ -51,7 +51,7 @@ Syed, H. A., Sayyed, I., Kalapureddy, M. C. R., & Grandhi, K. K. (2021). PyScanC
 
 Import Library::
 
-    from pyscancf import pyscancf as pcf
+    import pyscancf as pcf
 
 Mention the data path::
 
