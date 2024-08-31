@@ -13,6 +13,11 @@ Latest Documentation
 
 https://syedha.com/PyScanCf/
 
+Latest Examples
+====================
+
+https://github.com/syedhamidali/pyscancf_examples
+
 Installing from source
 ======================
 
