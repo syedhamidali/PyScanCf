@@ -1,4 +1,12 @@
+> [!WARNING]
+> ## New Xarray-based Package for IMD Radar Data ["Radarx"](https://radarx.readthedocs.io/en/stable/)
+ - Looking for a more modern, flexible, and efficient way to work with IMD radar data?
+ - Check out our new package: Radarx at https://radarx.readthedocs.io
+     > It’s an xarray-based toolkit built on top of xradar that supports reading, visualizing, and analyzing IMD radar files with ease.
+ > 💬 Join the discussion and stay connected with the radar community at [openradar.discourse.group](https://openradar.discourse.group/)
+
 [![Gitter](https://badges.gitter.im/PyScanCf/Issues.svg)](https://gitter.im/PyScanCf/Issues?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+---
 
 # PyScanCf
 
