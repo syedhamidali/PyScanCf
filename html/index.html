@@ -1,0 +1,499 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>PyScanCf: A Library for IMD Weather Radar Data &#8212; PyScanCf</title>
+
+
+
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API Reference Manual" href="API.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+
+
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+
+  <div class="navbar-header-items__start">
+
+      <div class="navbar-item">
+
+
+<a class="navbar-brand logo" href="#">
+
+
+
+
+
+    <p class="title logo__title">PyScanCf</p>
+
+</a></div>
+
+  </div>
+
+
+  <div class="col-lg-9 navbar-header-items">
+
+    <div class="me-auto navbar-header-items__center">
+
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="API.html">
+                        API Reference Manual
+                      </a>
+                    </li>
+
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="notebooks/tutorial.html">
+                        PyScanCf Example 1
+                      </a>
+                    </li>
+
+  </ul>
+</nav></div>
+
+    </div>
+
+
+    <div class="navbar-header-items__end">
+
+        <div class="navbar-item navbar-persistent--container">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
+
+
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+
+    </div>
+
+  </div>
+
+
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+
+
+
+    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+
+</div>
+
+    </nav>
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+
+
+
+  <div class="sidebar-header-items sidebar-primary__section">
+
+
+      <div class="sidebar-header-items__center">
+
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="API.html">
+                        API Reference Manual
+                      </a>
+                    </li>
+
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="notebooks/tutorial.html">
+                        PyScanCf Example 1
+                      </a>
+                    </li>
+
+  </ul>
+</nav></div>
+
+      </div>
+
+
+
+      <div class="sidebar-header-items__end">
+
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+
+      </div>
+
+  </div>
+
+
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+
+      <main id="main-content" class="bd-main">
+
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+
+              <div class="bd-header-article"></div>
+
+
+
+
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+
+  <section id="pyscancf-a-library-for-imd-weather-radar-data">
+<h1>PyScanCf: A Library for IMD Weather Radar Data<a class="headerlink" href="#pyscancf-a-library-for-imd-weather-radar-data" title="Permalink to this heading">#</a></h1>
+<p><strong>Release:</strong> {{release}}<br />
+<strong>Date:</strong> {{today}}</p>
+<section id="welcome-to-pyscancf-s-documentation">
+<h2>Welcome to PyScanCf’s documentation!<a class="headerlink" href="#welcome-to-pyscancf-s-documentation" title="Permalink to this heading">#</a></h2>
+<p>Go to <a class="github reference external" href="https://github.com/syedhamidali/pyscancf_examples">syedhamidali/pyscancf_examples</a> for latest examples and instructions</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><em>This library is under heavy development.</em></p>
+</div>
+<div class="toctree-wrapper compound">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="API.html">API Reference Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/tutorial.html">PyScanCf Example 1</a></li>
+</ul>
+</div>
+<a class="reference external image-reference" href="https://gitter.im/PyScanCf/Issues?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge"><img alt="Join the chat at https://gitter.im/PyScanCf/Issues" src="https://badges.gitter.im/PyScanCf/Issues.svg" /></a>
+</section>
+<section id="what-is-pyscancf">
+<h2>What is PyScanCf?<a class="headerlink" href="#what-is-pyscancf" title="Permalink to this heading">#</a></h2>
+<p>Creates Py-ART compatible cf-radial data from individual sweeps of Indian Meteorological Department (IMD) Radar data</p>
+<section id="description">
+<h3>Description<a class="headerlink" href="#description" title="Permalink to this heading">#</a></h3>
+<p>PyScanCf is a library for creating cfradial (polar) data from IMD radars that contain all 10 sweeps from single scans which are named as (Polar_ABC.nc) as well as gridded radar data from which are named as (grid_ABC.nc). Both formats are compatible for PyART. It uses Pyart to create grid data, so please remember to cite <strong>Py-ART</strong> as well.</p>
+</section>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">#</a></h2>
+<p>Installing PyScanCf from source is the only way to get the latest updates and
+enhancement to the software that have not yet made it into a release.
+The latest source code for PyScanCf can be obtained from the GitHub repository,
+<a class="github reference external" href="https://github.com/syedhamidali/PyScanCf.git">syedhamidali/PyScanCf.git</a>.</p>
+<p>How to install:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">pcf</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.9</span> <span class="n">jupyter</span> <span class="n">arm_pyart</span> <span class="n">pandas</span> <span class="n">wradlib</span> <span class="n">git</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span>
+<span class="n">conda</span> <span class="n">activate</span> <span class="n">pcf</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">syedhamidali</span><span class="o">/</span><span class="n">PyScanCf</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>Or, to install in your home directory, use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">syedhamidali</span><span class="o">/</span><span class="n">PyScanCf</span><span class="o">.</span><span class="n">git</span>
+<span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span>
+</pre></div>
+</div>
+<p>Or, Install via pip:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pyscancf</span>
+</pre></div>
+</div>
+</section>
+<section id="citation">
+<h2>Citation<a class="headerlink" href="#citation" title="Permalink to this heading">#</a></h2>
+<a class="reference external image-reference" href="https://doi.org/10.5281/zenodo.5574160"><img alt="https://zenodo.org/badge/DOI/10.5281/zenodo.5881692.svg" src="https://zenodo.org/badge/DOI/10.5281/zenodo.5881692.svg" /></a>
+<p>Syed, H. A., Sayyed, I., Kalapureddy, M. C. R., &amp; Grandhi, K. K. (2021).
+PyScanCf – The library for single sweep datasets of IMD weather radars. Zenodo. DOI:10.5281/zenodo.5574160.</p>
+</section>
+<section id="pyscancf-tutorial-on-youtube">
+<h2>PyScanCf Tutorial on Youtube<a class="headerlink" href="#pyscancf-tutorial-on-youtube" title="Permalink to this heading">#</a></h2>
+<p><a class="reference external" href="https://youtu.be/OUrdhe5virA">https://youtu.be/OUrdhe5virA</a></p>
+</section>
+<section id="quick-usage">
+<h2>Quick Usage<a class="headerlink" href="#quick-usage" title="Permalink to this heading">#</a></h2>
+<p>Import Library:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyscancf</span> <span class="k">as</span> <span class="nn">pcf</span>
+<span class="kn">import</span> <span class="nn">pyart</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+</pre></div>
+</div>
+<p>Mention the data path:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">inp</span> <span class="o">=</span> <span class="s2">&quot;../imd_temp_radar/B/&quot;</span>
+<span class="n">out</span> <span class="o">=</span> <span class="s2">&quot;../imd_temp_radar/out/&quot;</span>
+</pre></div>
+</div>
+<p>Convert data to cfradial, and gridded format:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pcf</span><span class="o">.</span><span class="n">cfrad</span><span class="p">(</span><span class="n">input_dir</span><span class="o">=</span><span class="n">inp</span><span class="p">,</span> <span class="n">output_dir</span><span class="o">=</span><span class="n">out</span><span class="p">,</span> <span class="n">scan_type</span><span class="o">=</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="n">gridder</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Number</span> <span class="n">of</span> <span class="n">files</span><span class="p">:</span>  <span class="mi">20</span>
+<span class="n">Total</span> <span class="n">number</span> <span class="n">of</span> <span class="n">files</span> <span class="n">will</span> <span class="n">be</span> <span class="n">created</span><span class="p">:</span>  <span class="mi">2</span>
+<span class="n">Merging</span> <span class="nb">all</span> <span class="n">scans</span> <span class="ow">in</span> <span class="n">one</span> <span class="n">file</span>
+<span class="n">Data</span> <span class="n">merging</span> <span class="n">done</span>
+<span class="n">Total</span> <span class="n">Time</span> <span class="n">Elapsed</span><span class="p">:</span>  <span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mf">35.931653</span>
+</pre></div>
+</div>
+<p>Plot Cappi:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">out</span><span class="o">+</span><span class="s2">&quot;grid*&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_grid</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+    <span class="n">pcf</span><span class="o">.</span><span class="n">plot_cappi</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="s2">&quot;REF&quot;</span><span class="p">,</span>
+                <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;pyart_HomeyerRainbow&quot;</span><span class="p">,</span> <span class="c1">#optional</span>
+                <span class="n">crosshair</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="c1">#optional</span>
+                <span class="n">savedir</span><span class="o">=</span><span class="n">out</span><span class="p">)</span> <span class="c1">#optional</span>
+</pre></div>
+</div>
+<p>And you’ll see the beautiful gridded data plot in your notebook,
+the figures will be saved in the directory from where you launched the notebook</p>
+<p><img alt="MAX-CAPPI" src="_images/cappi.png" /></p>
+</section>
+<section id="latest-examples">
+<h2>Latest Examples<a class="headerlink" href="#latest-examples" title="Permalink to this heading">#</a></h2>
+<p>Notebooks <a class="github reference external" href="https://github.com/syedhamidali/pyscancf_examples">syedhamidali/pyscancf_examples</a></p>
+</section>
+</section>
+
+
+                </article>
+
+
+
+                <footer class="bd-footer-article">
+
+<div class="footer-article-items footer-article__inner">
+
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="right-next"
+       href="API.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">API Reference Manual</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+
+</div>
+
+                </footer>
+
+            </div>
+
+
+
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#welcome-to-pyscancf-s-documentation">Welcome to PyScanCf’s documentation!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-pyscancf">What is PyScanCf?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#description">Description</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation">Citation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscancf-tutorial-on-youtube">PyScanCf Tutorial on Youtube</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-usage">Quick Usage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latest-examples">Latest Examples</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="_sources/index.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+
+
+          </div>
+          <footer class="bd-footer-content">
+
+          </footer>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+
+    <div class="footer-items__start">
+
+        <div class="footer-item">
+  <p class="copyright">
+
+      © Copyright 2023, PyScanCf.
+      <br/>
+
+  </p>
+</div>
+
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    <br/>
+  </p>
+</div>
+
+    </div>
+
+
+    <div class="footer-items__end">
+
+        <div class="footer-item"><p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.3.
+</p></div>
+
+    </div>
+
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -4,7 +4,8 @@
 """
 import os
 import numpy as np
-import pyart
+import pyart  ##noqa
+import cmweather  ## noqa
 import cartopy.crs as ccrs
 import cartopy.feature as feat
 import matplotlib.pyplot as plt
@@ -35,9 +36,9 @@ CAPPI_CMAPS = {
         ],
     },
     "VEL": {
-        "cmap": pyart.graph.cm.NWSVel,
-        "vmin": -30,
-        "vmax": 30,
+        "cmap": cmweather.cm.NWSVel,
+        "vmin": -50,
+        "vmax": 50,
         "title": "Max-V",
         "unit": "m/s",
         "keywords": [
@@ -53,7 +54,7 @@ CAPPI_CMAPS = {
         ],
     },
     "WIDTH": {
-        "cmap": pyart.graph.cm.NWS_SPW,
+        "cmap": cmweather.cm.NWS_SPW,
         "vmin": 0,
         "vmax": 4,
         "title": "Max-W",

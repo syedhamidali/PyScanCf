@@ -4,33 +4,49 @@
 # Author: Syed Hamid Ali - hamidsyed37@gmail.com
 """
 
-import datetime as dt
-import glob
-import os
-import pathlib
-import re
-import warnings
 
+import os
+import re
+import glob
+import pyart ## noqa
+import logging
+import warnings
 import numpy as np
-import pyart
 from netCDF4 import Dataset
-from pyart.config import get_metadata
+from datetime import datetime
+from pyart.config import get_metadata  ##noqa
 
 from pyscancf.maxcappi import plot_cappi
+from .utils import parse_fields
 
-warnings.filterwarnings("ignore")
-tstart = dt.datetime.now()
+warnings.filterwarnings("ignore", category=DeprecationWarning)
+tstart = datetime.now()
 
 
 def get_grid(radar, grid_shape=(30, 500, 500), height=15, length=250):
     """
-    Returns grid object from radar object.
+    Transform Cfradial radar data into a three-dimensional grid representation.
 
-    grid_shape=(60, 500, 500), no. of bins of z,y,x respectively.
+    Parameters
+    ----------
+    radar : pyart.core.Radar
+        The radar object containing the Cfradial data to be transformed.
 
-    height:(int) = 15, height in km
+    grid_shape : tuple, optional
+        The shape of the grid to be created in terms of the number of bins
+        in the z, y, and x dimensions, respectively. Default is (30, 500, 500).
 
-    length:(int) = 250, Range of radar in km
+    height : int, optional
+        The altitude or height in kilometers to which the grid will extend.
+        Default is 15 km.
+
+    length : int, optional
+        The maximum range in kilometers for the radar coverage. Default is 250 km.
+
+    Returns
+    -------
+    grid : pyart.core.Grid
+        A three-dimensional grid representation of the radar data.
 
     """
     grid = pyart.map.grid_from_radars(
@@ -62,106 +78,88 @@ def cfrad(
     nf=None,
 ):
     """
-    Aggregates data to cfradial1 data.
-    input_dir(str): Enter path of single sweep data directory,
-    output_dir(str): Enter the path for output data,
-    scan_type(str): "B", "C". B is for short range PPI,
-                & C is for long range PPI.
-    dualpol(bool): True, False. (If the data contains
-                dual-pol products e.g., ZDR, RHOHV),
-    gridder(bool): True, False,
-    plot(str): 'REF', 'VEL', 'WIDTH', 'ALL',
-    nf(int): Number of files to group together
+    Aggregate radar data into CfRadial1 format.
+
+    Parameters
+    ----------
+    input_dir : str
+        The directory path containing single-sweep radar data files.
+
+    output_dir : str
+        The directory path where the output data will be saved in CfRadial1 format.
+
+    scan_type : str, optional
+        The scan type, either "B" for short-range PPI (Plan Position Indicator)
+        or "C" for long-range PPI. Default is "B".
+
+    dualpol : bool, optional
+        Specifies whether the radar data contains dual-polarization products
+        such as ZDR (Differential Reflectivity) and RHOHV (Correlation Coefficient).
+        Set to True if present, otherwise False. Default is False.
+
+    gridder : bool, optional
+        Indicates whether data gridding should be performed. Set to True for data
+        gridding, otherwise False. Default is False.
+
+    plot : str, optional
+        Type of plots to generate for visualization. Options include "REF" for
+        reflectivity, "VEL" for velocity, "WIDTH" for spectrum width, or "ALL" for
+        all available plots. Default is None, which generates no plots.
+
+    nf : int, optional
+        Number of data files to group together during aggregation. Default is None,
+        meaning all available files will be aggregated together.
     """
-    pathlib.Path(output_dir).mkdir(parents=True, exist_ok=True)
     in_dir = input_dir
     out_dir = output_dir
     files_list = glob.glob(os.path.join(in_dir, "*nc*"))
     files = sorted(files_list, key=natural_sort_key)
-    print("Number of files: ", len(files))
-    bb = list()
-    if scan_type == "B":
-        if nf is None:
-            nf = 10
-        for i in range(0, len(files), nf):
-            bb.append(files[i : i + nf])
-    elif scan_type == "C":
-        if nf is None:
-            nf = 2
-        for i in range(0, len(files), nf):
-            bb.append(files[i : i + nf])
-    print(f"Total no. of output files: {len(bb)}.")
-    print("Merging all scans into one Volume")
-    for i in range(0, len(bb)):
-        en = []
-        a1 = []
-        t1 = []
-        e1 = []
-        Z1 = []
-        T1 = []
-        V1 = []
-        W1 = []
-        ZDR1 = []
-        KDP1 = []
-        PHIDP1 = []
-        SQI1 = []
-        RHOHV1 = []
-        HCLASS1 = []
+    volumes = []
+    nf = nf or (10 if scan_type == "B" else 2)  # Default nf value
+    # Split the files into groups based on scan type and nf value
+    for i in range(0, len(files), nf):
+        volumes.append(files[i : i + nf])
+    logging.info(f"Packing {len(files)} sweeps into {len(volumes)} volumes")
+    for volume in range(len(volumes)):
+        sweep_numbers = []
+        azimuth_list = []
+        times_list = []
+        elev_list = []
         nyquist = []
         unambigrange = []
-        for j in range(0, nf):
-            ds = Dataset(bb[i][j])
+        logging.info(f"Processing volume {volume+1}")
+        tmp_data = {}
+        for sweep in range(nf):
+            # logging.info(f"Sweep {sweep+1}")
+            ds = Dataset(volumes[volume][sweep])
             az = ds.variables["radialAzim"][:]
             time = ds.variables["radialTime"][:]
             ele = ds.variables["radialElev"][:]
-            Z = ds.variables["Z"][:]
-            # T = ds.variables['T'][:]
-            V = ds.variables["V"][:]
-            W = ds.variables["W"][:]
             EN = ds.variables["elevationNumber"][:]
-            a1.extend(az)
-            t1.extend(time)
-            e1.extend(ele)
-            Z1.extend(Z)
-            # T1.extend(T)
-            V1.extend(V)
-            W1.extend(W)
-            en.append(EN)
+            azimuth_list.extend(az)
+            times_list.extend(time)
+            elev_list.extend(ele)
+            sweep_numbers.append(EN)
             nyquist.append(ds.variables["nyquist"][:])
             unambigrange.append(ds.variables["unambigRange"][:])
-            if dualpol:
-                if "ZDR" in ds.variables:
-                    ZDR = ds.variables["ZDR"][:]
-                    ZDR1.extend(ZDR)
+            fields = parse_fields(ds)
+            for var_name, var_value in fields.items():
+                if var_name not in tmp_data.keys():
+                    tmp_data[var_name] = {k: v for k, v in var_value.items()}
+                else:
+                    tmp_data[var_name]["data"] = np.ma.concatenate(
+                        [tmp_data[var_name]["data"], var_value["data"]]
+                    )
 
-                if "PHIDP" in ds.variables:
-                    PHIDP = ds.variables["PHIDP"][:]
-                    PHIDP1.extend(PHIDP)
-
-                if "KDP" in ds.variables:
-                    KDP = ds.variables["KDP"][:]
-                    KDP1.extend(KDP)
-
-                if "SQI" in ds.variables:
-                    SQI = ds.variables["SQI"][:]
-                    SQI1.extend(SQI)
-
-                if "RHOHV" in ds.variables:
-                    RHOHV = ds.variables["RHOHV"][:]
-                    RHOHV1.extend(RHOHV)
-
-                if "HCLASS" in ds.variables:
-                    HCLASS = ds.variables["HCLASS"][:]
-                    HCLASS1.extend(HCLASS)
-
-
-        fname = os.path.basename(bb[i][0]).split(".nc")[0]
+        fname = os.path.basename(volumes[volume][0]).split(".nc")[0]
 
         radar = pyart.testing.make_empty_ppi_radar(
             ds.dimensions["bin"].size, ds.dimensions["radial"].size * nf, 1
         )
-        radar.nsweeps = nf
-        radar.time["data"] = np.array(t1)
+
+        radar.nsweeps = int(nf)
+
+        radar.time["data"] = np.array(times_list)
         # 'seconds since 1970-01-01T00:00:00Z'
         radar.time["units"] = ds.variables["radialTime"].units
         radar.latitude["data"] = np.array([ds.variables["siteLat"][:]])
@@ -173,9 +171,9 @@ def cfrad(
             int(ds.variables["gateSize"][:].data),
         )
 
-        radar.fixed_angle["data"] = ds.variables["elevationList"]
+        radar.fixed_angle["data"] = ds.variables["elevationList"][:]
 
-        radar.sweep_number["data"] = np.array(en)
+        radar.sweep_number["data"] = np.array(sweep_numbers)
 
         radar.sweep_start_ray_index["data"] = np.arange(
             0, ds.dimensions["radial"].size * nf, ds.dimensions["radial"].size
@@ -187,84 +185,18 @@ def cfrad(
             ds.dimensions["radial"].size,
         )
 
-        radar.azimuth["data"] = np.ma.array(a1)
-        radar.elevation["data"] = np.ma.array(e1)
+        radar.azimuth["data"] = np.ma.array(azimuth_list)
+        radar.elevation["data"] = np.ma.array(elev_list)
         radar.metadata["instrument_name"] = fname[:3]
         radar.init_gate_altitude()
         radar.init_gate_longitude_latitude()
-        ref_dict = get_metadata("reflectivity")
-        ref_dict["data"] = np.ma.array(Z1)
-        ref_dict["units"] = "dBZ"
-        VEL_dict = get_metadata("velocity")
-        VEL_dict["data"] = np.ma.array(V1)
-        VEL_dict["units"] = "m/s"
-        W_dict = get_metadata("spectrum_width")
-        W_dict["data"] = np.ma.array(W1)
-        W_dict["units"] = "m/s"
-        radar.instrument_parameters = {}
-        radar.instrument_parameters["nyquist_velocity"] = {
-            "units": "m/s",
-            "comments": "Unambiguous velocity",
-            "meta_group": "instrument_parameters",
-            "long_name": "Nyquist velocity",
-        }
-        radar.instrument_parameters["nyquist_velocity"]["data"] = np.ma.array(nyquist)
-        radar.instrument_parameters["unambiguous_range"] = {
-            "units": "meters",
-            "comments": "Unambiguous range",
-            "meta_group": "instrument_parameters",
-            "long_name": "Unambiguous range",
-        }
-        radar.instrument_parameters["unambiguous_range"]["data"] = np.ma.array(
-            unambigrange
-        )
-
-        radar.fields = {"REF": ref_dict, "VEL": VEL_dict, "WIDTH": W_dict}
-
-        if dualpol:
-            ZDR_dict = get_metadata("differential_reflectivity")
-            ZDR_dict["units"] = "dB"
-            if "ZDR" in ds.variables:
-                ZDR_dict["data"] = np.ma.array(ZDR1)
-                radar.fields["ZDR"] = ZDR_dict
-            
-            PHIDP_dict = get_metadata("differential_phase")
-            PHIDP_dict["units"] = "degrees"
-            if "PHIDP" in ds.variables:
-                PHIDP_dict["data"] = np.ma.array(PHIDP1)
-                radar.fields["PHIDP"] = PHIDP_dict
-            
-
-            KDP_dict = get_metadata("specific_differential_phase")
-            KDP_dict["units"] = "degrees/km"
-            if "KDP" in ds.variables:
-                KDP_dict["data"] = np.ma.array(KDP1)
-                radar.fields["KDP"] = KDP_dict
-
-
-            RHOHV_dict = get_metadata("cross_correlation_ratio")
-            RHOHV_dict["units"] = "unitless"
-            if "RHOHV" in ds.variables:
-                RHOHV_dict["data"] = np.ma.array(RHOHV1)
-                radar.fields["RHOHV"] = RHOHV_dict 
-            
-
-            SQI_dict = get_metadata("normalized_coherent_power")
-            SQI_dict["units"] = "unitless"
-            if "SQI" in ds.variables:
-                SQI_dict["data"] = np.ma.array(SQI1)
-                radar.fields["SQI"] = SQI_dict
-            
-
-            HCLASS_dict = get_metadata("radar_echo_classification")
-            HCLASS_dict["units"] = "unitless"
-            if "HCLASS" in ds.variables:
-                HCLASS_dict["data"] = np.ma.array(HCLASS1)
-                radar.fields["HCLASS"] = HCLASS_dict
+        radar.fields = tmp_data
 
         out_file = f"cfrad_{fname}.nc"
         out_path = os.path.join(out_dir, out_file)
+        os.makedirs(out_dir, exist_ok=True)
         pyart.io.write_cfradial(out_path, radar, format="NETCDF4")
+        logging.info(f"Saved {os.path.basename(out_path)}")
 
         if gridder:
             grid = get_grid(radar)
@@ -284,7 +216,8 @@ def cfrad(
             out_file = f"grid_{fname}.nc"
             out_path = os.path.join(out_dir, out_file)
             pyart.io.write_grid(out_path, grid)
+            logging.info(f"Saved {os.path.basename(out_path)}")
             del radar, grid
         else:
             pass
-    print("Data merging done \nTotal Time Elapsed: ", dt.datetime.now() - tstart)
+    logging.info(f"Data merging done \nTotal Time Elapsed: {datetime.now() - tstart}")

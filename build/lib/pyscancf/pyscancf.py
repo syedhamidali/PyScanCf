@@ -115,7 +115,11 @@ def cfrad(
             time = ds.variables["radialTime"][:]
             ele = ds.variables["radialElev"][:]
             Z = ds.variables["Z"][:]
+<<<<<<< HEAD
             # T = ds.variables['T'][:]
+=======
+            T = ds.variables["T"][:]
+>>>>>>> 4e8c75e (Refactor all)
             V = ds.variables["V"][:]
             W = ds.variables["W"][:]
             EN = ds.variables["elevationNumber"][:]
@@ -153,7 +157,6 @@ def cfrad(
                 if "HCLASS" in ds.variables:
                     HCLASS = ds.variables["HCLASS"][:]
                     HCLASS1.extend(HCLASS)
-
 
         fname = os.path.basename(bb[i][0]).split(".nc")[0]
 
@@ -227,13 +230,12 @@ def cfrad(
             if "ZDR" in ds.variables:
                 ZDR_dict["data"] = np.ma.array(ZDR1)
                 radar.fields["ZDR"] = ZDR_dict
-            
+
             PHIDP_dict = get_metadata("differential_phase")
             PHIDP_dict["units"] = "degrees"
             if "PHIDP" in ds.variables:
                 PHIDP_dict["data"] = np.ma.array(PHIDP1)
                 radar.fields["PHIDP"] = PHIDP_dict
-            
 
             KDP_dict = get_metadata("specific_differential_phase")
             KDP_dict["units"] = "degrees/km"
@@ -241,20 +243,17 @@ def cfrad(
                 KDP_dict["data"] = np.ma.array(KDP1)
                 radar.fields["KDP"] = KDP_dict
 
-
             RHOHV_dict = get_metadata("cross_correlation_ratio")
             RHOHV_dict["units"] = "unitless"
             if "RHOHV" in ds.variables:
                 RHOHV_dict["data"] = np.ma.array(RHOHV1)
-                radar.fields["RHOHV"] = RHOHV_dict 
-            
+                radar.fields["RHOHV"] = RHOHV_dict
 
             SQI_dict = get_metadata("normalized_coherent_power")
             SQI_dict["units"] = "unitless"
             if "SQI" in ds.variables:
                 SQI_dict["data"] = np.ma.array(SQI1)
                 radar.fields["SQI"] = SQI_dict
-            
 
             HCLASS_dict = get_metadata("radar_echo_classification")
             HCLASS_dict["units"] = "unitless"

@@ -1,39 +1,83 @@
 [project]
 name = "pyscancf"
 version = "1.0.29"
-description = "Creates cf-radial1 data from individual sweeps of IMD DWR data"
+description = "Creates CF-Radial1 data from individual sweeps of IMD DWR data"
 readme = "README.md"
-authors = [{ name = "Hamid Ali Syed", email = "windcirculation@gmail.com" }] # Replace with your actual email
+authors = [{ name = "Hamid Ali Syed", email = "hamidsyed37@gmail.com" }]
+maintainers = [{ name = "Hamid Ali Syed", email = "hamidsyed37@gmail.com" }]
 license = { file = "LICENSE" }
 keywords = ["IMD", "Radar", "cf-radial", "single sweeps", "radar", "weather", "meteorology"]
 classifiers = [
     "Development Status :: 4 - Beta",
-    "Topic :: Scientific/Engineering",
-    "Topic :: Scientific/Engineering :: Atmospheric Science",
-    "License :: OSI Approved :: MIT License",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Atmospheric Science",
+    "License :: OSI Approved :: MIT License"
 ]
+dynamic = ["dependencies"]
 
 [project.urls]
-Issues = "https://github.com/syedhamidali/PyScanCf/issues"
 Homepage = "https://github.com/syedhamidali/PyScanCf/"
+Issues = "https://github.com/syedhamidali/PyScanCf/issues"
+changelog = "https://github.com/syedhamidali/PyScanCf/blob/main/CHANGELOG.md"
+documentation = "https://pyscancf.readthedocs.io"
 
 [build-system]
 requires = [
-    "setuptools>=45",
-    "wheel",
-    "setuptools_scm[toml]>=7.0",
+    "setuptools>=64",
+    "setuptools-scm>=8",
+    "wheel"
 ]
 build-backend = "setuptools.build_meta"
 
-[tool.setuptools.dynamic]
-dependencies = {file = ["requirements.txt"]}
-readme = {file = ["README.md", "docs/history.md"], content-type = "text/markdown"}
+[tool.setuptools]
+packages = ["pyscancf"]
 
-[tool.setuptools.dynamic.optional-dependencies]
-dev = { file = "requirements_dev.txt"}
+[tool.setuptools.dynamic]
+dependencies = { file = ["requirements.txt"] }
+readme = { file = ["README.md", "docs/history.md"], content-type = "text/markdown" }
+
+[tool.setuptools_scm]
+write_to = "pyscancf/_version.py"
+local_scheme = "no-local-version"
+fallback_version = "9999"
+
+[project.optional-dependencies]
+dev = [
+    "coverage",
+    "mypy",
+    "pytest",
+    "ruff",
+    "pre-commit",
+    "black[jupyter]",
+    "blackdoc",
+    "codespell",
+    "pytest-cov",
+    "pytest-mock",
+    "pytest-check",
+    "pytest-sugar",
+    "pytest-watcher",
+    "deepdiff",
+    "pip-tools",
+    "bumpver",
+    "twine",
+    "wheel",
+    "build",
+    "setuptools>=61.0.0",
+    "sphinx",
+    "sphinx-gallery",
+    "sphinx-book-theme",
+    "nbsphinx",
+    "sphinx_mdinclude"
+]
 
 [tool.black]
 target-version = ["py39"]
@@ -42,31 +86,11 @@ line-length = 88
 [tool.ruff]
 target-version = "py39"
 builtins = ["ellipsis"]
-exclude = [
-    ".eggs",
-    "doc",
-]
+exclude = [".eggs", "doc"]
 
 [tool.ruff.lint]
-# E402: module level import not at top of file
-# E501: line too long - let black worry about that
-# E731: do not assign a lambda expression, use a def
-ignore = [
-    "E402",
-    "E501",
-    "E731",
-]
-select = [
-    # Pyflakes
-    "F",
-    # Pycodestyle
-    "E",
-    "W",
-    # isort
-    "I",
-    # Pyupgrade
-    "UP",
-]
+ignore = ["E402", "E501", "E731"]
+select = ["F", "E", "W", "I", "UP"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["pyscancf"]

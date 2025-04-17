@@ -7,7 +7,13 @@ LICENSE
 License
 README.md
 pyproject.toml
+<<<<<<< HEAD
 setup.py
+=======
+search.html
+searchindex.js
+setup.cfg
+>>>>>>> 4e8c75e (Refactor all)
 test_pyscancf.py
 Examples/TEST_Notebook.ipynb
 Examples/examples.md
@@ -116,10 +122,11 @@ docs/notebooks/tutorial.ipynb
 notebooks/tutorial.html
 pyscancf/.DS_Store
 pyscancf/__init__.py
-pyscancf/_version_.py
+pyscancf/_version.py
 pyscancf/cmapmaker.py
 pyscancf/maxcappi.py
 pyscancf/pyscancf.py
+pyscancf/utils.py
 pyscancf.egg-info/PKG-INFO
 pyscancf.egg-info/SOURCES.txt
 pyscancf.egg-info/dependency_links.txt

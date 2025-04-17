@@ -1,0 +1,592 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>PyScanCf Example 1 &#8212; PyScanCf</title>
+
+
+
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../../../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../../../../../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../../../../../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+
+  <link href="../../../../../../../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../../../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../../../../../../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../../../../../../../../" id="documentation_options" src="../../../../../../../../../_static/documentation_options.js"></script>
+    <script src="../../../../../../../../../_static/jquery.js"></script>
+    <script src="../../../../../../../../../_static/underscore.js"></script>
+    <script src="../../../../../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../../../../../../../_static/doctools.js"></script>
+    <script src="../../../../../../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../../../../../../_static/copybutton.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_build/jupyter_execute/_build/jupyter_execute/_build/jupyter_execute/_build/jupyter_execute/notebooks/tutorial';</script>
+    <link rel="index" title="Index" href="../../../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+
+
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+
+  <div class="navbar-header-items__start">
+
+      <div class="navbar-item">
+
+
+<a class="navbar-brand logo" href="../../../../../../../../../index.html">
+
+
+
+
+
+    <p class="title logo__title">PyScanCf</p>
+
+</a></div>
+
+  </div>
+
+
+  <div class="col-lg-9 navbar-header-items">
+
+    <div class="me-auto navbar-header-items__center">
+
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../../../../../../../API.html">
+                        API Reference Manual
+                      </a>
+                    </li>
+
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../../../../../../../notebooks/tutorial.html">
+                        PyScanCf Example 1
+                      </a>
+                    </li>
+
+  </ul>
+</nav></div>
+
+    </div>
+
+
+    <div class="navbar-header-items__end">
+
+        <div class="navbar-item navbar-persistent--container">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
+
+
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+
+    </div>
+
+  </div>
+
+
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+
+
+
+    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+
+</div>
+
+    </nav>
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+
+
+
+  <div class="sidebar-header-items sidebar-primary__section">
+
+
+      <div class="sidebar-header-items__center">
+
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../../../../../../../API.html">
+                        API Reference Manual
+                      </a>
+                    </li>
+
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../../../../../../../notebooks/tutorial.html">
+                        PyScanCf Example 1
+                      </a>
+                    </li>
+
+  </ul>
+</nav></div>
+
+      </div>
+
+
+
+      <div class="sidebar-header-items__end">
+
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+
+      </div>
+
+  </div>
+
+
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+
+      <main id="main-content" class="bd-main">
+
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+
+    <div class="header-article-items__start">
+
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumbs">
+  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../../../../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">PyScanCf Example 1</li>
+  </ul>
+</nav>
+</div>
+
+    </div>
+
+
+</div>
+</div>
+
+
+
+
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+
+  <section id="pyscancf-example-1">
+<h1>PyScanCf Example 1<a class="headerlink" href="#pyscancf-example-1" title="Permalink to this heading">#</a></h1>
+<ul class="simple">
+<li><p>author: &#64;syedhamidali</p></li>
+<li><p>date: Apr 15, 2023</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyscancf</span> <span class="k">as</span> <span class="nn">pcf</span>
+<span class="kn">import</span> <span class="nn">pyart</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pcf</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>## You are using the Python ARM Radar Toolkit (Py-ART), an open source
+## library for working with weather radar data. Py-ART is partly
+## supported by the U.S. Department of Energy as part of the Atmospheric
+## Radiation Measurement (ARM) Climate Research Facility, an Office of
+## Science user facility.
+##
+## If you use this software to prepare a publication, please cite:
+##
+##     JJ Helmus and SM Collis, JORS 2016, doi: 10.5334/jors.119
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/homebrew/lib/python3.11/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>## Cite PyScanCf:
+
+## Syed, H. A.,Sayyed, I., Kalapureddy, M. C. R., &amp; Grandhi, K. K.(2021).
+## PyScanCf – The library for individual sweep datasets of IMD weather radars.
+## Zenodo. doi:10.5281/zenodo.5574160.
+
+1.0.26
+</pre></div>
+</div>
+</div>
+</div>
+<p>Setup the paths for the input and output data, <code class="docutils literal notranslate"><span class="pre">!ls</span> <span class="pre">$inp</span></code> shows the raw IMD data files, this is how the B-type (short range - high resolution) IMD DWR data looks like.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inp</span> <span class="o">=</span> <span class="s2">&quot;/Users/syed44/Downloads/Git_Stuff/imd_temp_radar/B/&quot;</span>
+<span class="n">out</span> <span class="o">=</span> <span class="s2">&quot;/Users/syed44/Downloads/Git_Stuff/imd_temp_radar/out/&quot;</span>
+<span class="o">!</span>ls<span class="w"> </span><span class="nv">$inp</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">GOA210516024101-IMD-B.nc</span>   <span class=" -Color -Color-Red">GOA210516030244-IMD-B.nc</span>
+<span class=" -Color -Color-Red">GOA210516024101-IMD-B.nc.1</span> <span class=" -Color -Color-Red">GOA210516030244-IMD-B.nc.1</span>
+<span class=" -Color -Color-Red">GOA210516024101-IMD-B.nc.2</span> <span class=" -Color -Color-Red">GOA210516030244-IMD-B.nc.2</span>
+<span class=" -Color -Color-Red">GOA210516024101-IMD-B.nc.3</span> <span class=" -Color -Color-Red">GOA210516030244-IMD-B.nc.3</span>
+<span class=" -Color -Color-Red">GOA210516024101-IMD-B.nc.4</span> <span class=" -Color -Color-Red">GOA210516030244-IMD-B.nc.4</span>
+<span class=" -Color -Color-Red">GOA210516024101-IMD-B.nc.5</span> <span class=" -Color -Color-Red">GOA210516030244-IMD-B.nc.5</span>
+<span class=" -Color -Color-Red">GOA210516024101-IMD-B.nc.6</span> <span class=" -Color -Color-Red">GOA210516030244-IMD-B.nc.6</span>
+<span class=" -Color -Color-Red">GOA210516024101-IMD-B.nc.7</span> <span class=" -Color -Color-Red">GOA210516030244-IMD-B.nc.7</span>
+<span class=" -Color -Color-Red">GOA210516024101-IMD-B.nc.8</span> <span class=" -Color -Color-Red">GOA210516030244-IMD-B.nc.8</span>
+<span class=" -Color -Color-Red">GOA210516024101-IMD-B.nc.9</span> <span class=" -Color -Color-Red">GOA210516030244-IMD-B.nc.9</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">pcf</span><span class="o">.</span><span class="n">cfrad</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on function cfrad in module pyscancf.pyscancf:
+
+cfrad(input_dir, output_dir, scan_type=&#39;B&#39;, dualpol=False, gridder=False, plot=None, nf=None)
+    Aggregates data to cfradial1 data.
+    input_dir(str): Enter path of single sweep data directory,
+    output_dir(str): Enter the path for output data,
+    scan_type(str): &quot;B&quot;, &quot;C&quot;. B is for short range PPI,
+                &amp; C is for long range PPI.
+    dualpol(bool): True, False. (If the data contains
+                dual-pol products e.g., ZDR, RHOHV),
+    gridder(bool): True, False,
+    plot(str): &#39;REF&#39;, &#39;VELH&#39;, &#39;WIDTH&#39;, &#39;ALL&#39;,
+    nf(int): Number of files to group together
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s see what we have got into <code class="docutils literal notranslate"><span class="pre">pcf.cfrad()</span></code> function.</p>
+<ul class="simple">
+<li><p>It aggregates data to cfradial1 data. It takes inputs such as <code class="docutils literal notranslate"><span class="pre">input_dir</span></code>, <code class="docutils literal notranslate"><span class="pre">output_dir</span></code>, <code class="docutils literal notranslate"><span class="pre">scan_type</span></code>, <code class="docutils literal notranslate"><span class="pre">dualpol</span></code>, <code class="docutils literal notranslate"><span class="pre">gridder</span></code>, <code class="docutils literal notranslate"><span class="pre">plot</span></code>, and <code class="docutils literal notranslate"><span class="pre">nf</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">input_dir</span></code> specifies the path of single sweep data directory, while <code class="docutils literal notranslate"><span class="pre">output_dir</span></code> specifies the path for output data.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scan_type</span></code> takes two options: <code class="docutils literal notranslate"><span class="pre">B</span></code> for short-range PPI, and <code class="docutils literal notranslate"><span class="pre">C</span></code> for long-range PPI.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">dualpol</span></code> parameter is set to True if the data contains dual-polarization products like ZDR and RHOHV.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gridder</span></code> is a boolean parameter, which is set to True if the user wants to create a gridded output.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">plot</span></code> argument is used to generate a cappi plot. It can be set to <code class="docutils literal notranslate"><span class="pre">REF</span></code>, <code class="docutils literal notranslate"><span class="pre">VELH</span></code>, <code class="docutils literal notranslate"><span class="pre">WIDTH</span></code>, or <code class="docutils literal notranslate"><span class="pre">ALL</span></code>. The names are not case-sensitive and will be taken care of by the <code class="docutils literal notranslate"><span class="pre">plot_cappi()</span></code> function. For example, if the data has a <code class="docutils literal notranslate"><span class="pre">reflectivity</span></code> field named <code class="docutils literal notranslate"><span class="pre">DBZ</span></code>, you can still write <code class="docutils literal notranslate"><span class="pre">REF</span></code> or <code class="docutils literal notranslate"><span class="pre">reflectivity</span></code>, and same is for other radar moments.</p></li>
+<li><p>Lastly, <code class="docutils literal notranslate"><span class="pre">nf</span></code> is an integer parameter that specifies the number of files to group together, it is usually <code class="docutils literal notranslate"><span class="pre">10</span></code> for type <code class="docutils literal notranslate"><span class="pre">B</span></code>, and <code class="docutils literal notranslate"><span class="pre">2</span></code> or <code class="docutils literal notranslate"><span class="pre">3</span></code> for type <code class="docutils literal notranslate"><span class="pre">C</span></code> data.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pcf</span><span class="o">.</span><span class="n">cfrad</span><span class="p">(</span><span class="n">input_dir</span><span class="o">=</span><span class="n">inp</span><span class="p">,</span> <span class="n">output_dir</span><span class="o">=</span><span class="n">out</span><span class="p">,</span> <span class="n">scan_type</span><span class="o">=</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="n">gridder</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of files:  20
+Total number of files will be created:  2
+Merging all scans in one file
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data merging done
+Total Time Elapsed:  0:00:25.137246
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>ls<span class="w"> </span><span class="nv">$out</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Max-REF_GOA_20210516024104.png cfrad_GOA210516030244-IMD-B.nc
+Max-REF_GOA_20210516030306.png grid_GOA210516024101-IMD-B.nc
+cfrad_GOA210516024101-IMD-B.nc grid_GOA210516030244-IMD-B.nc
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">out</span><span class="o">+</span><span class="s2">&quot;grid*&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_grid</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+    <span class="n">pcf</span><span class="o">.</span><span class="n">plot_cappi</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="s2">&quot;REF&quot;</span><span class="p">,</span>
+                   <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;pyart_HomeyerRainbow&quot;</span><span class="p">,</span> <span class="c1">#optional</span>
+                   <span class="n">crosshair</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="c1">#optional</span>
+                   <span class="n">savedir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="c1">#optional</span>
+                   <span class="n">show_figure</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1">#optional</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>...............................
+Plotting Max-REF 20210516024104
+...............................
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>...............................
+Plotting Max-REF 20210516030306
+...............................
+</pre></div>
+</div>
+<img alt="../../../../../../../../../_images/10c645b1c3ce44a9616e10e5f2167af3d46986e632ab32f92543bd2d0b2f7d08.png" src="../../../../../../../../../_images/10c645b1c3ce44a9616e10e5f2167af3d46986e632ab32f92543bd2d0b2f7d08.png" />
+<img alt="../../../../../../../../../_images/199034e640b49ab6dbe712181ea3147cdeffe8663e2d08b1c42405d509e8dada.png" src="../../../../../../../../../_images/199034e640b49ab6dbe712181ea3147cdeffe8663e2d08b1c42405d509e8dada.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_grid</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+    <span class="n">pcf</span><span class="o">.</span><span class="n">plot_cappi</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="s2">&quot;REF&quot;</span><span class="p">,</span>
+                   <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;pyart_HomeyerRainbow&quot;</span><span class="p">,</span> <span class="c1">#optional</span>
+                   <span class="n">crosshair</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="c1">#optional</span>
+                   <span class="n">savedir</span><span class="o">=</span><span class="n">out</span><span class="p">,</span> <span class="c1">#optional</span>
+                   <span class="n">show_figure</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="c1">#optional</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>...............................
+Plotting Max-REF 20210516024104
+...............................
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Figure(s) saved as /Users/syed44/Downloads/Git_Stuff/imd_temp_radar/out//Max-REF_GOA_20210516024104.png
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>...............................
+Plotting Max-REF 20210516030306
+...............................
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Figure(s) saved as /Users/syed44/Downloads/Git_Stuff/imd_temp_radar/out//Max-REF_GOA_20210516030306.png
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+
+                </article>
+
+
+
+                <footer class="bd-footer-article">
+
+<div class="footer-article-items footer-article__inner">
+
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+
+</div>
+
+                </footer>
+
+            </div>
+
+
+
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="../../../../../../../../../_sources/_build/jupyter_execute/_build/jupyter_execute/_build/jupyter_execute/_build/jupyter_execute/notebooks/tutorial.ipynb.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+
+
+          </div>
+          <footer class="bd-footer-content">
+
+          </footer>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../../../../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../../../../../../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+
+    <div class="footer-items__start">
+
+        <div class="footer-item">
+  <p class="copyright">
+
+      © Copyright 2023, PyScanCf.
+      <br/>
+
+  </p>
+</div>
+
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    <br/>
+  </p>
+</div>
+
+    </div>
+
+
+    <div class="footer-items__end">
+
+        <div class="footer-item"><p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.3.
+</p></div>
+
+    </div>
+
+</div>
+
+  </footer>
+  </body>
+</html>

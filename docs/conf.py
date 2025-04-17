@@ -14,6 +14,7 @@
 # -- Project information -----------------------------------------------------
 import os
 import sys
+import pyscancf
 
 project = "PyScanCf"
 copyright = "2023, PyScanCf"
@@ -23,8 +24,6 @@ author = "Hamid Ali Syed"
 
 sys.path.insert(0, os.path.abspath(".."))
 sys.path.insert(0, os.path.abspath("../pyscancf"))
-
-import pyscancf
 
 # with open("../pyscancf/_version_.py") as f:
 #     exec(f.read())
@@ -96,7 +95,7 @@ napoleon_use_param = False
 #
 source_suffix = [".rst", ".md", ".ipynb"]
 
-
+autodoc_mock_imports = ["pyart", "xradar"]
 # The master toctree document.
 master_doc = "index"
 
