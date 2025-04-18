@@ -16,5 +16,5 @@ python:
     - path: .
     - requirements: requirements_dev.txt
     - method: pip
-      packages:
+    - packages:
         - IPython>=7.0
