@@ -108,8 +108,8 @@ master_doc = "index"
 html_static_path = ["_static"]
 
 # Don't execute the jupyter notebooks
-# nb_execution_mode = "force"
-nb_execution_mode = "off"
+nb_execution_mode = "force"
+# nb_execution_mode = "off"
 
 myst_enable_extensions = [
     "colon_fence",

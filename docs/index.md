@@ -22,8 +22,17 @@
 ```{toctree}
 :maxdepth: 2
 :caption: Contents
+
 API
+```
+
+```{toctree}
+:maxdepth: 2
+:caption: Examples
+
 notebooks/tutorial.ipynb
+notebooks/Notebook.ipynb
+notebooks/TEST_Notebook.ipynb
 ```
 
 ```{image} https://badges.gitter.im/PyScanCf/Issues.svg
@@ -49,7 +58,7 @@ The latest source code for PyScanCf can be obtained from the GitHub repository,
 How to install:
 
 ```
-conda create -n pcf python=3.9 jupyter arm_pyart pandas wradlib git -c conda-forge
+conda create -n pcf arm_pyart pandas wradlib xradar git -c conda-forge
 conda activate pcf
 pip install git+https://github.com/syedhamidali/PyScanCf.git
 ```
