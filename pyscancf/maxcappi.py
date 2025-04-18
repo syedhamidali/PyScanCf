@@ -133,7 +133,9 @@ def plot_cappi(
             break
 
     if matched_key is None:
-        print(f"Error: None of the expected keywords for '{moment}' found in grid.fields")
+        print(
+            f"Error: None of the expected keywords for '{moment}' found in grid.fields"
+        )
         return
 
     max_c = grid.fields[matched_key]["data"].max(axis=0)
