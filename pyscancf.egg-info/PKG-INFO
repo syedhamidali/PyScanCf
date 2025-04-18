@@ -1,11 +1,9 @@
 Metadata-Version: 2.4
 Name: pyscancf
-<<<<<<< HEAD
-Version: 1.0.29
-Summary: Creates cf-radial1 data from individual sweeps of IMD DWR data
-Home-page: https://github.com/syedhamidali/PyScanCf
-Author: Hamid Ali Syed
-Author-email: Hamid Ali Syed <windcirculation@gmail.com>
+Version: 2.0.1.dev0
+Summary: Creates CF-Radial1 data from individual sweeps of IMD DWR data
+Author-email: Hamid Ali Syed <hamidsyed37@gmail.com>
+Maintainer-email: Hamid Ali Syed <hamidsyed37@gmail.com>
 License: MIT License
         
         Copyright (c) 2023 Hamid Ali Syed
@@ -28,20 +26,11 @@ License: MIT License
         OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
         SOFTWARE.
         
-Project-URL: Issues, https://github.com/syedhamidali/PyScanCf/issues
 Project-URL: Homepage, https://github.com/syedhamidali/PyScanCf/
-Keywords: IMD,Radar,cf-radial,single sweeps,radar,weather,meteorology
-=======
-Version: 1.0.28.dev0
-Summary: Creates CF-Radial1 data from individual sweeps of IMD DWR data
-Author-email: Hamid Ali Syed <hamidsyed37@gmail.com>
-Maintainer-email: Hamid Ali Syed <hamidsyed37@gmail.com>
-License-Expression: MIT
-Project-URL: bugs, https://github.com/syedhamidali/PyScanCf/issues
+Project-URL: Issues, https://github.com/syedhamidali/PyScanCf/issues
 Project-URL: changelog, https://github.com/syedhamidali/PyScanCf/blob/main/CHANGELOG.md
-Project-URL: homepage, https://github.com/syedhamidali/PyScanCf
 Project-URL: documentation, https://pyscancf.readthedocs.io
->>>>>>> 4e8c75e (Refactor all)
+Keywords: IMD,Radar,cf-radial,single sweeps,radar,weather,meteorology
 Classifier: Development Status :: 4 - Beta
 Classifier: Intended Audience :: Developers
 Classifier: Intended Audience :: Education
@@ -52,12 +41,16 @@ Classifier: Programming Language :: Python :: 3
 Classifier: Programming Language :: Python :: 3.10
 Classifier: Programming Language :: Python :: 3.11
 Classifier: Programming Language :: Python :: 3.12
-<<<<<<< HEAD
-=======
 Classifier: Topic :: Scientific/Engineering
 Classifier: Topic :: Scientific/Engineering :: Atmospheric Science
->>>>>>> 4e8c75e (Refactor all)
+Classifier: License :: OSI Approved :: MIT License
 Description-Content-Type: text/markdown
+Requires-Dist: netCDF4
+Requires-Dist: numpy
+Requires-Dist: pyproj
+Requires-Dist: scipy
+Requires-Dist: xarray
+Requires-Dist: arm_pyart
 Provides-Extra: dev
 Requires-Dist: coverage; extra == "dev"
 Requires-Dist: mypy; extra == "dev"
@@ -85,7 +78,15 @@ Requires-Dist: sphinx-book-theme; extra == "dev"
 Requires-Dist: nbsphinx; extra == "dev"
 Requires-Dist: sphinx_mdinclude; extra == "dev"
 
+> [!WARNING]
+> ## New Xarray-based Package for IMD Radar Data ["Radarx"](https://radarx.readthedocs.io/en/stable/)
+ - Looking for a more modern, flexible, and efficient way to work with IMD radar data?
+ - Check out our new package: Radarx at https://radarx.readthedocs.io
+     > It’s an xarray-based toolkit built on top of xradar that supports reading, visualizing, and analyzing IMD radar files with ease.
+ > 💬 Join the discussion and stay connected with the radar community at [openradar.discourse.group](https://openradar.discourse.group/)
+
 [![Gitter](https://badges.gitter.im/PyScanCf/Issues.svg)](https://gitter.im/PyScanCf/Issues?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+---
 
 # PyScanCf
 
@@ -100,6 +101,11 @@ Latest Documentation
 
 https://syedha.com/PyScanCf/
 
+Latest Examples
+====================
+
+https://github.com/syedhamidali/pyscancf_examples
+
 Installing from source
 ======================
 
@@ -110,7 +116,7 @@ https://github.com/syedhamidali/PyScanCf.git.
 
 How to install::
 
-    conda create -n pcf python=3.9 jupyter arm_pyart pandas wradlib git -c conda-forge
+    conda create -n pcf arm_pyart nbclassic git -c conda-forge
     conda activate pcf
     pip install git+https://github.com/syedhamidali/PyScanCf.git
 
@@ -138,7 +144,7 @@ Syed, H. A., Sayyed, I., Kalapureddy, M. C. R., & Grandhi, K. K. (2021). PyScanC
 
 Import Library::
 
-    from pyscancf import pyscancf as pcf
+    import pyscancf as pcf
 
 Mention the data path::
 

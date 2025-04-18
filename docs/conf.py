@@ -17,7 +17,7 @@ import sys
 import pyscancf
 
 project = "PyScanCf"
-copyright = "2023, PyScanCf"
+copyright = "2025, PyScanCf"
 author = "Hamid Ali Syed"
 
 # The full version, including alpha/beta/rc tags

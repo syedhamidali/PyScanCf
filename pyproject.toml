@@ -1,6 +1,5 @@
 [project]
 name = "pyscancf"
-version = "1.0.29"
 description = "Creates CF-Radial1 data from individual sweeps of IMD DWR data"
 readme = "README.md"
 authors = [{ name = "Hamid Ali Syed", email = "hamidsyed37@gmail.com" }]
@@ -22,7 +21,12 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Atmospheric Science",
     "License :: OSI Approved :: MIT License"
 ]
-dynamic = ["dependencies"]
+dynamic = ["version", "dependencies"]
+
+[tool.setuptools_scm]
+write_to = "pyscancf/version.py"
+local_scheme = "no-local-version"
+fallback_version = "9999"
 
 [project.urls]
 Homepage = "https://github.com/syedhamidali/PyScanCf/"
@@ -44,11 +48,6 @@ packages = ["pyscancf"]
 [tool.setuptools.dynamic]
 dependencies = { file = ["requirements.txt"] }
 readme = { file = ["README.md", "docs/history.md"], content-type = "text/markdown" }
-
-[tool.setuptools_scm]
-write_to = "pyscancf/_version.py"
-local_scheme = "no-local-version"
-fallback_version = "9999"
 
 [project.optional-dependencies]
 dev = [
