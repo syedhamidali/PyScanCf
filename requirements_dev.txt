@@ -20,3 +20,4 @@ sphinx-favicon
 nbsphinx
 pydata-sphinx-theme
 ipython
+myst-nb
