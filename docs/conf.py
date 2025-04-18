@@ -12,8 +12,10 @@
 
 
 # -- Project information -----------------------------------------------------
+import datetime
 import os
 import sys
+
 import pyscancf
 
 project = "PyScanCf"
@@ -106,4 +108,19 @@ master_doc = "index"
 html_static_path = ["_static"]
 
 # Don't execute the jupyter notebooks
-nb_execution_mode = "force"
+# nb_execution_mode = "force"
+nb_execution_mode = "off"
+
+myst_enable_extensions = [
+    "colon_fence",
+    "deflist",
+    "html_admonition",
+    "html_image",
+    "replacements",
+    "substitution",
+]
+
+myst_substitutions = {
+    "release": release,
+    "today": str(datetime.date.today()),
+}
