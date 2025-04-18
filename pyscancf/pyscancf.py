@@ -20,6 +20,10 @@ from pyscancf.maxcappi import plot_cappi
 from .utils import parse_fields
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
 tstart = datetime.now()
 
 
@@ -220,4 +224,4 @@ def cfrad(
             del radar, grid
         else:
             pass
-    logging.info(f"Data merging done \nTotal Time Elapsed: {datetime.now() - tstart}")
+    logging.info(f"Data merging done \nTime Taken: {datetime.now() - tstart}")
