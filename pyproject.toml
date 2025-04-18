@@ -86,10 +86,5 @@ line-length = 88
 target-version = "py39"
 builtins = ["ellipsis"]
 exclude = [".eggs", "doc"]
-
-[tool.ruff.lint]
 ignore = ["E402", "E501", "E731"]
 select = ["F", "E", "W", "I", "UP"]
-
-[tool.ruff.lint.isort]
-known-first-party = ["pyscancf"]
