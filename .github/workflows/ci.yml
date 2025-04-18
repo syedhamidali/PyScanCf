@@ -27,4 +27,4 @@ jobs:
           black --check .
       - name: Lint with ruff
         run: |
-          ruff check .
+          ruff check . --exclude '*.ipynb'

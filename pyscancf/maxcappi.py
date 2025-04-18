@@ -125,13 +125,20 @@ def plot_cappi(
     savedir: string, path to save the plot, optional
     """
 
-    try:
-        param = get_cmap_params(keyword=moment)
-        max_c = grid.fields[param["name"]]["data"].max(axis=0)
-        max_x = grid.fields[param["name"]]["data"].max(axis=1)
-        max_y = grid.fields[param["name"]]["data"].max(axis=2).T
-    except KeyError:
-        print(f"Error: '{moment}' does not match the defined moment")
+    param = get_cmap_params(keyword=moment)
+    matched_key = None
+    for kw in param["keywords"]:
+        if kw in grid.fields:
+            matched_key = kw
+            break
+
+    if matched_key is None:
+        print(f"Error: None of the expected keywords for '{moment}' found in grid.fields")
+        return
+
+    max_c = grid.fields[matched_key]["data"].max(axis=0)
+    max_x = grid.fields[matched_key]["data"].max(axis=1)
+    max_y = grid.fields[matched_key]["data"].max(axis=2).T
 
     trgx = grid.x["data"]
     trgy = grid.y["data"]
