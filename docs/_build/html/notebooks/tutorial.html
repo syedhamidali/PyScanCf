@@ -41,7 +41,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=5251f665"></script>
+    <script src="../_static/documentation_options.js?v=cce5d01e"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -52,7 +52,7 @@
     <link rel="prev" title="API Reference Manual" href="../API.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="999" />
+  <meta name="docsearch:version" content="2.0.3.dev2" />
   </head>
 
 
@@ -321,29 +321,8 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pyscancf</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pcf</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pyart</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>
+
 <span class="nb">print</span><span class="p">(</span><span class="n">pcf</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>## You are using the Python ARM Radar Toolkit (Py-ART), an open source
-## library for working with weather radar data. Py-ART is partly
-## supported by the U.S. Department of Energy as part of the Atmospheric
-## Radiation Measurement (ARM) Climate Research Facility, an Office of
-## Science user facility.
-##
-## If you use this software to prepare a publication, please cite:
-##
-##     JJ Helmus and SM Collis, JORS 2016, doi: 10.5334/jors.119
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>## Cite PyScanCf:
-
-## Syed, H. A., Sayyed, I., Kalapureddy, M. C. R., &amp; Grandhi, K. K. (2021).
-## PyScanCf – The library for individual sweep datasets of IMD weather radars.
-## Zenodo. https://doi.org/10.5281/zenodo.5574160
-
-999
 </pre></div>
 </div>
 </div>
@@ -357,53 +336,10 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ls: /Users/syed44/Downloads/Git_Stuff/imd_temp_radar/B/: No such file or directory
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">pcf</span><span class="o">.</span><span class="n">cfrad</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on function cfrad in module pyscancf.pyscancf:
-
-cfrad(input_dir, output_dir, scan_type=&#39;B&#39;, dualpol=False, gridder=False, plot=None, nf=None)
-    Aggregate radar data into CfRadial1 format.
-
-    Parameters
-    ----------
-    input_dir : str
-        The directory path containing single-sweep radar data files.
-
-    output_dir : str
-        The directory path where the output data will be saved in CfRadial1 format.
-
-    scan_type : str, optional
-        The scan type, either &quot;B&quot; for short-range PPI (Plan Position Indicator)
-        or &quot;C&quot; for long-range PPI. Default is &quot;B&quot;.
-
-    dualpol : bool, optional
-        Specifies whether the radar data contains dual-polarization products
-        such as ZDR (Differential Reflectivity) and RHOHV (Correlation Coefficient).
-        Set to True if present, otherwise False. Default is False.
-
-    gridder : bool, optional
-        Indicates whether data gridding should be performed. Set to True for data
-        gridding, otherwise False. Default is False.
-
-    plot : str, optional
-        Type of plots to generate for visualization. Options include &quot;REF&quot; for
-        reflectivity, &quot;VEL&quot; for velocity, &quot;WIDTH&quot; for spectrum width, or &quot;ALL&quot; for
-        all available plots. Default is None, which generates no plots.
-
-    nf : int, optional
-        Number of data files to group together during aggregation. Default is None,
-        meaning all available files will be aggregated together.
 </pre></div>
 </div>
 </div>
@@ -431,30 +367,10 @@ cfrad(input_dir, output_dir, scan_type=&#39;B&#39;, dualpol=False, gridder=False
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ls: /Users/syed44/Downloads/Git_Stuff/imd_temp_radar/out/: No such file or directory
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">out</span><span class="o">+</span><span class="s2">&quot;grid*&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
-    <span class="n">grid</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_grid</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
-    <span class="n">pcf</span><span class="o">.</span><span class="n">plot_cappi</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="s2">&quot;REF&quot;</span><span class="p">,</span>
-                   <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;SyedSpectral&quot;</span><span class="p">,</span> <span class="c1">#optional</span>
-                   <span class="n">crosshair</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="c1">#optional</span>
-                   <span class="n">savedir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="c1">#optional</span>
-                   <span class="n">show_figure</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1">#optional</span>
-                   <span class="n">vmin</span><span class="o">=-</span><span class="mi">10</span><span class="p">,</span>
-                   <span class="n">vmax</span><span class="o">=</span><span class="mi">60</span><span class="p">,)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">out</span> <span class="o">+</span> <span class="s2">&quot;grid*&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -463,11 +379,31 @@ cfrad(input_dir, output_dir, scan_type=&#39;B&#39;, dualpol=False, gridder=False
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
     <span class="n">grid</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_grid</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
-    <span class="n">pcf</span><span class="o">.</span><span class="n">plot_cappi</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="s2">&quot;REF&quot;</span><span class="p">,</span>
-                   <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;pyart_HomeyerRainbow&quot;</span><span class="p">,</span> <span class="c1">#optional</span>
-                   <span class="n">crosshair</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="c1">#optional</span>
-                   <span class="n">savedir</span><span class="o">=</span><span class="n">out</span><span class="p">,</span> <span class="c1">#optional</span>
-                   <span class="n">show_figure</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="c1">#optional</span>
+    <span class="n">pcf</span><span class="o">.</span><span class="n">plot_cappi</span><span class="p">(</span>
+        <span class="n">grid</span><span class="p">,</span>
+        <span class="s2">&quot;REF&quot;</span><span class="p">,</span>
+        <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;SyedSpectral&quot;</span><span class="p">,</span>  <span class="c1"># optional</span>
+        <span class="n">crosshair</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># optional</span>
+        <span class="n">savedir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># optional</span>
+        <span class="n">show_figure</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># optional</span>
+        <span class="n">vmin</span><span class="o">=-</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">vmax</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_grid</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+    <span class="n">pcf</span><span class="o">.</span><span class="n">plot_cappi</span><span class="p">(</span>
+        <span class="n">grid</span><span class="p">,</span>
+        <span class="s2">&quot;REF&quot;</span><span class="p">,</span>
+        <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;pyart_HomeyerRainbow&quot;</span><span class="p">,</span>  <span class="c1"># optional</span>
+        <span class="n">crosshair</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># optional</span>
+        <span class="n">savedir</span><span class="o">=</span><span class="n">out</span><span class="p">,</span>  <span class="c1"># optional</span>
+        <span class="n">show_figure</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># optional</span>
     <span class="p">)</span>
 </pre></div>
 </div>
@@ -539,7 +475,7 @@ cfrad(input_dir, output_dir, scan_type=&#39;B&#39;, dualpol=False, gridder=False
 
   <p class="copyright">
 
-      © Copyright 2023, PyScanCf.
+      © Copyright 2025, PyScanCf.
       <br/>
 
   </p>
