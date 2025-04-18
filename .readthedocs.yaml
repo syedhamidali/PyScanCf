@@ -13,8 +13,8 @@ sphinx:
 
 python:
   install:
+    - path: .
+    - requirements: requirements_dev.txt
     - method: pip
-      path: .
-      requirements: requirements_dev.txt
       packages:
         - IPython>=7.0
