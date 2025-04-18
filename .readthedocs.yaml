@@ -13,8 +13,6 @@ sphinx:
 
 python:
   install:
-    - path: .
-    - requirements: requirements_dev.txt
     - method: pip
-    - packages:
-        - IPython>=7.0
+      path: .  # <-- this installs the local pyscancf package
+    - requirements: requirements_dev.txt
