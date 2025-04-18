@@ -85,6 +85,6 @@ line-length = 88
 [tool.ruff]
 target-version = "py39"
 builtins = ["ellipsis"]
-exclude = [".eggs", "doc", "Examples"]
+exclude = [".eggs", "doc", "Examples", "docs/_build"]
 select = ["F", "E", "W", "I", "UP"]
 ignore = ["E402", "E501", "E731"]
