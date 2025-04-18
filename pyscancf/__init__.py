@@ -13,7 +13,7 @@ import warnings as _warnings
 _warnings.filterwarnings("always", category=DeprecationWarning, module="pyscancf")
 
 # Import primary components
-from .cmapmaker import syed_spectral_vals, register_colormap
+from .cmapmaker import register_colormap, syed_spectral_vals
 from .maxcappi import plot_cappi  # noqa
 from .pyscancf import cfrad, get_grid  # noqa
 

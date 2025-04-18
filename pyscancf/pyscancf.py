@@ -4,25 +4,25 @@
 # Author: Syed Hamid Ali - hamidsyed37@gmail.com
 """
 
-
+import glob
+import logging
 import os
 import re
-import glob
-import pyart ## noqa
-import logging
 import warnings
-import numpy as np
-from netCDF4 import Dataset
 from datetime import datetime
+
+import numpy as np
+import pyart  ## noqa
+from netCDF4 import Dataset
 from pyart.config import get_metadata  ##noqa
 
 from pyscancf.maxcappi import plot_cappi
+
 from .utils import parse_fields
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s"
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
 )
 tstart = datetime.now()
 

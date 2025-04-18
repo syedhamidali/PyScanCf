@@ -14,6 +14,7 @@
 # -- Project information -----------------------------------------------------
 import os
 import sys
+
 import pyscancf
 
 project = "PyScanCf"

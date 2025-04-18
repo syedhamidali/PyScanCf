@@ -1,8 +1,9 @@
 """
 Colormap created using https://syedha.com/colormaps
 """
-import numpy as np
+
 import matplotlib as mpl
+import numpy as np
 
 syed_spectral_vals = np.array(
     [

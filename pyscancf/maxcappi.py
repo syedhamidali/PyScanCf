@@ -2,13 +2,15 @@
 @author: Hamid Ali Syed
 @email: hamidsyed37[at]gmail[dot]com
 """
+
 import os
-import numpy as np
-import pyart  ##noqa
-import cmweather  ## noqa
+
 import cartopy.crs as ccrs
 import cartopy.feature as feat
+import cmweather  ## noqa
 import matplotlib.pyplot as plt
+import numpy as np
+import pyart  ##noqa
 from cartopy.mpl.gridliner import LATITUDE_FORMATTER, LONGITUDE_FORMATTER
 from matplotlib.ticker import NullFormatter
 from netCDF4 import num2date
